@@ -2,20 +2,18 @@ import { View, Text, Button, StyleSheet, SafeAreaView } from "react-native";
 import CustomTextInput from "../components/form-components/CustomTextInput";
 import AppName from "../components/AppName";
 
-function SignUpScreen({ navigation }) {
+function LoginScreen({ navigation }) {
     return (
         <SafeAreaView style={styles.screen}>
             <View style={styles.container}>
                 <AppName />
                 <View>
-                    <Text style={styles.title}>Sign up</Text>
+                    <Text style={styles.title}>Log in</Text>
                     <Text style={styles.subtitle}>to continue</Text>
                 </View>
                 <CustomTextInput placeholder='Enter username' label='Username' secureTextEntry={false}  />
-                <CustomTextInput placeholder='Enter email address' label='Email' secureTextEntry={false}  />
                 <CustomTextInput placeholder='Enter password' label='Password' secureTextEntry={true}  />
-                <CustomTextInput placeholder='Re-enter password' label='Re-enter password' secureTextEntry={true}  />
-                <Button title="Sign Up" onPress={() => {}} />
+                <Button title="Log in" onPress={() => {}} />
             </View>
         </SafeAreaView>
     );
@@ -44,4 +42,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default SignUpScreen;
+export default LoginScreen;
