@@ -5,7 +5,11 @@ const AuthStack = createStackNavigator();
 
 function AuthNavigator() {
     return (
-        <AuthStack.Navigator>
+        <AuthStack.Navigator
+        screenOptions={{
+            headerShown: false,
+        }}
+        >
             <AuthStack.Screen name="SignUp" component={SignUpScreen} />
         </AuthStack.Navigator>
     );
