@@ -7,7 +7,7 @@ import FormButton from "../components/form-components/FormButton";
 import AuthStackLayout from '../layouts/AuthStackLayout'; 
 import globalStyles from "../styles/globalStyles";
 import { logIn } from '../api';
-import { loggedInUser } from '../slices/authSlice'; 
+import { loggedInUser } from '../store/slices/authSlice'; 
 
 function LoginScreen({ navigation }) {
     const dispatch = useDispatch(); 

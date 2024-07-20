@@ -1,18 +1,30 @@
 import { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import CustomTextInput from "../components/form-components/CustomTextInput";
 import FormButton from "../components/form-components/FormButton";
 import AuthStackLayout from "../layouts/AuthStackLayout";
 import globalStyles from "../styles/globalStyles";
 
-function SignUpScreen({ navigation }) {
+const schema = yup.object().shape({
+    username: yup.string().required('Username is required'),
+    email: yup.string().email('Invalid email format').required('Email is required'),
+    password: yup.string().min(6, 'Password must be at least 6 characters').max(15, 'Password cannot be more than 15 characters').required('Password is required'),
+    passwordConfirm: yup.string()
+        .oneOf([yup.ref('password'), null], 'Passwords must match')
+        .required('Password confirmation is required'),
+});
+
+const SignUpScreen = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
     const {
         control,
         handleSubmit,
         formState: { errors },
     } = useForm({
+        resolver: yupResolver(schema),
         defaultValues: {
             username: "",
             email: "",
@@ -20,6 +32,7 @@ function SignUpScreen({ navigation }) {
             passwordConfirm: "",
         },
     });
+    
 
     const onSubmit = (data) => {
         console.log(data);
@@ -76,7 +89,7 @@ function SignUpScreen({ navigation }) {
                             <CustomTextInput
                                 placeholder="Enter password"
                                 label="Password"
-                                secureTextEntry={true}
+                                isSecure={true}
                                 onChangeText={onChange}
                                 onBlur={onBlur}
                                 value={value}
@@ -94,7 +107,7 @@ function SignUpScreen({ navigation }) {
                             <CustomTextInput
                                 placeholder="Confirm password"
                                 label="Confirm password"
-                                secureTextEntry={true}
+                                isSecure={true}
                                 onChangeText={onChange}
                                 onBlur={onBlur}
                                 value={value}
