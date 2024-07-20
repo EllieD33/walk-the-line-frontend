@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import CustomTextInput from "../components/form-components/CustomTextInput";
 import AppName from "../components/AppName";
 import FormButton from "../components/form-components/FormButton";
+import AuthStackLayout from "../layouts/AuthStackLayout";
 
 function SignUpScreen({ navigation }) {
     const {
@@ -24,12 +25,9 @@ function SignUpScreen({ navigation }) {
     };
 
     return (
-        <SafeAreaView style={styles.screen}>
-            <View style={styles.container}>
-                <AppName />
+        <AuthStackLayout style={styles.screen}>
                 <View>
                     <Text style={styles.title}>Sign up</Text>
-                    <Text style={styles.subtitle}>to continue</Text>
                 </View>
                 <View>
                     <Controller
@@ -119,31 +117,16 @@ function SignUpScreen({ navigation }) {
                         <Text style={styles.link}>Log in.</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
-        </SafeAreaView>
+        </AuthStackLayout>
     );
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        backgroundColor: '#4AC483',
-    },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        padding: 16,
-    },
     title: {
-        fontSize: 24,
+        fontSize: 30,
         color: '#fff',
         textAlign: 'center',
-    },
-    subtitle: {
-        fontSize: 20,
-        color: '#fff',
-        marginBottom: 20,
-        textAlign: 'center',
+        marginBottom: 8,
     },
     text: {
         fontSize: 16,
