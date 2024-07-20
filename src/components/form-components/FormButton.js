@@ -22,7 +22,7 @@ FormButton.propTypes = {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: '#D4EADF',
-        borderRadius: 30,
+        borderRadius: 10,
         marginVertical: 10,
         paddingVertical: 10,
         paddingHorizontal: 20,

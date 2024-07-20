@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet, SafeAreaView } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import CustomTextInput from "../components/form-components/CustomTextInput";
 import AppName from "../components/AppName";
