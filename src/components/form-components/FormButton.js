@@ -1,12 +1,13 @@
 import React from 'react';
 import { Pressable, Text, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import globalStyles from '../../styles/globalStyles';
 
 const FormButton = ({ text, onPress, accessibilityLabel, accessibilityHint }) => {
     return (
         <View>
             <Pressable onPress={onPress} style={styles.button} accessibilityLabel={accessibilityLabel} accessibilityHint={accessibilityHint} >
-                <Text style={styles.buttonText}>{text}</Text>
+                <Text style={[globalStyles.textDark, styles.buttonText]}>{text}</Text>
             </Pressable>
         </View>
     );
@@ -28,10 +29,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     buttonText: {
-        color: '#232323',
         textAlign: 'center',
-        fontFamily: 'Arial',
-        fontSize: 16,
     },
 });
 

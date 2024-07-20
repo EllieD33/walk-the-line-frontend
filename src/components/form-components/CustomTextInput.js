@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Text, TextInput, StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
+import globalStyles from '../../styles/globalStyles';
 
 const CustomTextInput = ({ label, isSecure, onChangeText, onBlur, value, error, accessibilityLabel, accessibilityHint }) => {
     const [isFocused, setIsFocused] = useState(false);
 
     return (
         <View style={styles.container}>
-            <Text style={styles.label}>
+            <Text style={[globalStyles.label, styles.label]}>
                     {label}
                 </Text>
             <TextInput
@@ -26,7 +27,7 @@ const CustomTextInput = ({ label, isSecure, onChangeText, onBlur, value, error, 
                 accessibilityHint={accessibilityHint}
             />
             {<View style={styles.line} />}
-            {error && <Text style={styles.errorText}>{error}</Text>}
+            {error && <Text style={[globalStyles.errorText, styles.errorText]}>{error}</Text>}
         </View>
     );
 };
@@ -50,8 +51,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center', 
     },
     label: {
-        fontSize: 14,
-        color: 'white',
         marginTop: 5,
         paddingLeft: 20,
     },
@@ -74,7 +73,6 @@ const styles = StyleSheet.create({
         borderBottomColor: 'red',
     },
     errorText: {
-        color: 'red',
         marginLeft: 20,
         marginTop: 5,
     },

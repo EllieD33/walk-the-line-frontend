@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import CustomTextInput from "../components/form-components/CustomTextInput";
 import FormButton from "../components/form-components/FormButton";
 import AuthStackLayout from "../layouts/AuthStackLayout";
+import globalStyles from "../styles/globalStyles";
 
 function SignUpScreen({ navigation }) {
     const {
@@ -26,7 +27,7 @@ function SignUpScreen({ navigation }) {
     return (
         <AuthStackLayout style={styles.screen}>
                 <View>
-                    <Text style={styles.title}>Sign up</Text>
+                    <Text style={[globalStyles.h1, styles.title]}>Sign up</Text>
                 </View>
                 <View>
                     <Controller
@@ -109,11 +110,11 @@ function SignUpScreen({ navigation }) {
                         accessibilityHint="Double tap to sign up" />
                 </View>
                 <View style={styles.center} >
-                    <Text style={styles.text}>
+                    <Text style={[globalStyles.textWhite, styles.centredText]}>
                         Already have an account?{' '}
                     </Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                        <Text style={styles.link}>Log in</Text>
+                        <Text style={[globalStyles.textBoldDark, styles.link]}>Log in</Text>
                     </TouchableOpacity>
                 </View>
         </AuthStackLayout>
@@ -122,20 +123,13 @@ function SignUpScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 30,
         color: '#fff',
         textAlign: 'center',
-        marginBottom: 8,
     },
-    text: {
-        fontSize: 16,
-        color: 'white',
+    centredText: {
         textAlign: 'center',
     },
     link: {
-        fontWeight: 'bold',
-        color: '#1c4d31',
-        fontSize: 16,
         marginTop: 4,
     },
     center: {

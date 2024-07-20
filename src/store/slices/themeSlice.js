@@ -3,13 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const themeSlice = createSlice({
     name: 'theme',
     initialState: {
-        fontLoaded: false
+        fontsLoaded: {
+            satisfy: false,
+            montserrat: false,
+            montserratBold: false,
+        }
     }, reducers: {
-        setFontLoaded: (state, action) => {
-            state.fontLoaded = action.payload;
+        setFontsLoaded: (state, action) => {
+            const { fontName, loaded } = action.payload;
+            state.fontsLoaded[fontName] = loaded;
         },
     },
 });
 
-export const { setFontLoaded } = themeSlice.actions;
+export const { setFontsLoaded } = themeSlice.actions;
 export default themeSlice.reducer;
