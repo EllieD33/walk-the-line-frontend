@@ -5,11 +5,11 @@ import NavButton from "../components/NavButton";
 const WelcomeScreen = ({ navigation }) => {
 
     const handleLoginPress = () => {
-
+        navigation.navigate('Login');
     }
 
     const handleSignupPress = () => {
-        
+        navigation.navigate('SignUp');
     }
 
 
