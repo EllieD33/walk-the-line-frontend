@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import CustomTextInput from "../components/form-components/CustomTextInput";
@@ -6,6 +7,7 @@ import AuthStackLayout from "../layouts/AuthStackLayout";
 import globalStyles from "../styles/globalStyles";
 
 function SignUpScreen({ navigation }) {
+    const [loading, setLoading] = useState(false);
     const {
         control,
         handleSubmit,
@@ -105,6 +107,8 @@ function SignUpScreen({ navigation }) {
                     <FormButton
                         role={"submit"}
                         text="Sign up"
+                        loading={loading}
+                        loadingText="Signing up..."
                         onPress={handleSubmit(onSubmit)}
                         accessibilityLabel="Sign up button"
                         accessibilityHint="Double tap to sign up" />

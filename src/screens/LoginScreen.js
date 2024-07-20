@@ -1,15 +1,21 @@
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from "react-native";
+import { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import CustomTextInput from "../components/form-components/CustomTextInput";
 import FormButton from "../components/form-components/FormButton";
 import AuthStackLayout from '../layouts/AuthStackLayout'; 
 import globalStyles from "../styles/globalStyles";
+import { logIn } from '../api';
 
 function LoginScreen({ navigation }) {
+    const [loading, setLoading] = useState(false);
+    const [logInFailed, setLogInFailed] = useState('');
+    const [apiError, setApiError] = useState('');
     const {
         control,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm({
         defaultValues: {
             username: "",
@@ -17,9 +23,24 @@ function LoginScreen({ navigation }) {
         },
     });
 
-    const onSubmit = (data) => {
-        console.log(data);
-        //Add logic
+    const onSubmit = async (data) => {
+        setLoading(true);
+        setLogInFailed('');
+        setApiError('');
+        try {
+            const response = await logIn(data)
+            if (response.success) {
+                reset();
+                // Will navigate to HomeScreen
+                console.log('Login successful', response);
+            } else {
+                setLogInFailed(response.message  || 'Invalid credentials');
+            }
+        } catch (error) {
+            setApiError(error.message || 'An unexpected error occurred');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -54,7 +75,7 @@ function LoginScreen({ navigation }) {
                         <CustomTextInput
                             placeholder="Enter password"
                             label="Password"
-                            secureTextEntry={true}
+                            isSecure={true}
                             onChangeText={onChange}
                             onBlur={onBlur}
                             value={value}
@@ -64,18 +85,21 @@ function LoginScreen({ navigation }) {
                         />
                     )}
                 />
+                <Text style={globalStyles.errorText}>
+                    {logInFailed || apiError || ''}
+                </Text>
                 <FormButton
                     role={"submit"}
                     text="Log in"
+                    loading={loading}
+                    loadingText="Logging in..."
                     onPress={handleSubmit(onSubmit)}
                     accessibilityLabel="Log in button"
                     accessibilityHint="Double tap to log in"
                 />
             </View>
             <View style={styles.center} >
-                <Text style={[globalStyles.textWhite, styles.centredText]}>
-                    Don't have an account?{' '}
-                </Text>
+                <Text style={[globalStyles.textWhite, styles.centredText]}>Don't have an account?</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text style={[globalStyles.textBoldDark, styles.link]}>Sign up</Text>
                 </TouchableOpacity>
