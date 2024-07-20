@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useForm, Controller } from "react-hook-form";
+import { useDispatch } from 'react-redux';  // 
 import CustomTextInput from "../components/form-components/CustomTextInput";
 import FormButton from "../components/form-components/FormButton";
 import AuthStackLayout from '../layouts/AuthStackLayout'; 
 import globalStyles from "../styles/globalStyles";
 import { logIn } from '../api';
+import { loggedInUser } from '../slices/authSlice'; 
 
 function LoginScreen({ navigation }) {
+    const dispatch = useDispatch(); 
     const [loading, setLoading] = useState(false);
     const [logInFailed, setLogInFailed] = useState('');
     const [apiError, setApiError] = useState('');
@@ -31,6 +34,7 @@ function LoginScreen({ navigation }) {
             const response = await logIn(data)
             if (response.success) {
                 reset();
+                dispatch(loggedInUser(response.user)); 
                 // Will navigate to HomeScreen
                 console.log('Login successful', response);
             } else {
