@@ -114,7 +114,7 @@ function SignUpScreen({ navigation }) {
                         Already have an account?{' '}
                     </Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                        <Text style={styles.link}>Log in.</Text>
+                        <Text style={styles.link}>Log in</Text>
                     </TouchableOpacity>
                 </View>
         </AuthStackLayout>
