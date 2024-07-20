@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         width: 100,
+        borderColor: '#D4EADF',
+        borderStyle: 'solid',
+        borderWidth: 1,
     },
     buttonOutline: {
         backgroundColor: 'transparent',
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: '#D4EADF',
     },
     buttonFilled: {
         backgroundColor: '#D4EADF',
