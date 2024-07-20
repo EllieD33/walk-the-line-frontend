@@ -85,7 +85,7 @@ function LoginScreen({ navigation }) {
                         />
                     )}
                 />
-                <Text style={globalStyles.errorText}>
+                <Text style={[globalStyles.errorText,styles.centredText]}>
                     {logInFailed || apiError || ''}
                 </Text>
                 <FormButton
