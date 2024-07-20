@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import CustomTextInput from "../components/form-components/CustomTextInput";
-import AppName from "../components/AppName";
 import FormButton from "../components/form-components/FormButton";
 import AuthStackLayout from "../layouts/AuthStackLayout";
 
