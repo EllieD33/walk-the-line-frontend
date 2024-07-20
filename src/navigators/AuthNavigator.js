@@ -11,8 +11,8 @@ function AuthNavigator() {
             headerShown: false,
         }}
         >
-            <AuthStack.Screen name="Login" component={LoginScreen} />
             <AuthStack.Screen name="SignUp" component={SignUpScreen} />
+            <AuthStack.Screen name="Login" component={LoginScreen} />
         </AuthStack.Navigator>
     );
 }

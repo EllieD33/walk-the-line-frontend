@@ -2,28 +2,31 @@ import React, { useState } from 'react';
 import { Text, TextInput, StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
-const CustomTextInput = ({ placeholder, label, isSecure }) => {
+const CustomTextInput = ({ label, isSecure, onChangeText, onBlur, value, error, accessibilityLabel, accessibilityHint }) => {
     const [isFocused, setIsFocused] = useState(false);
 
     return (
         <View style={styles.container}>
-            {isFocused && (
-                <Text style={styles.label}>
+            <Text style={styles.label}>
                     {label}
                 </Text>
-            )}
             <TextInput
                 style={[
                     styles.input,
-                    isFocused && styles.inputFocused
+                    isFocused && styles.inputFocused,
+                    error && styles.errorBorder
                 ]}
-                placeholder={isFocused ? '' : placeholder}
                 secureTextEntry={isSecure}
                 onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
+                onBlur={() => {setIsFocused(false); onBlur();}}
+                onChangeText={onChangeText}
+                value={value}
                 placeholderTextColor="white"
+                accessibilityLabel={accessibilityLabel}
+                accessibilityHint={accessibilityHint}
             />
-            {!isFocused && <View style={styles.line} />}
+            {<View style={styles.line} />}
+            {error && <Text style={styles.errorText}>{error}</Text>}
         </View>
     );
 };
@@ -31,13 +34,19 @@ const CustomTextInput = ({ placeholder, label, isSecure }) => {
 CustomTextInput.propTypes = {
     placeholder: PropTypes.string,
     label: PropTypes.string,
-    isSecure: PropTypes.bool
+    isSecure: PropTypes.bool,
+    onChangeText: PropTypes.func.isRequired,
+    onBlur: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string,
+    accessibilityLabel: PropTypes.string.isRequired,
+    accessibilityHint: PropTypes.string.isRequired,
 };
 
 const styles = StyleSheet.create({
     container: {
         marginVertical: 10,
-        width: '80%',
+        width: '100%',
         alignSelf: 'center', 
     },
     label: {
@@ -55,17 +64,20 @@ const styles = StyleSheet.create({
         fontSize: 16,
         backgroundColor: 'transparent', 
     },
-    inputFocused: {
-        borderBottomColor: 'white',
-        backgroundColor: '#D4EADF',
-        color: 'black'
-    },
     line: {
         height: 1,
         backgroundColor: 'white',
         width: '90%',
         alignSelf: 'center'
-    }
+    },
+    errorBorder: {
+        borderBottomColor: 'red',
+    },
+    errorText: {
+        color: 'red',
+        marginLeft: 20,
+        marginTop: 5,
+    },
 });
 
 export default CustomTextInput;
