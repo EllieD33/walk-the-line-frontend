@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     },
     map: {
         flex: 1,
+        ...StyleSheet.absoluteFillObject,
     },
     center: {
         flex: 1,
