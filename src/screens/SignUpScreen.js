@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import CustomTextInput from "../components/form-components/CustomTextInput";
 import FormButton from "../components/form-components/FormButton";
 import AuthStackLayout from "../layouts/AuthStackLayout";
 import globalStyles from "../styles/globalStyles";
-import { signUp } from '../api'
+import { signUp, getUsernames } from '../api'
+import { Ionicons } from '@expo/vector-icons';
 
 const schema = yup.object().shape({
     username: yup.string().required('Username is required'),
@@ -19,6 +20,9 @@ const schema = yup.object().shape({
 });
 
 const SignUpScreen = ({ navigation }) => {
+    const [usernames, setUsernames] = useState([]);
+    const [usernameTaken, setUsernameTaken] = useState(false);
+    const [typingStarted, setTypingStarted] = useState(false);
     const [loading, setLoading] = useState(false);
     const [signUpFailed, setSignUpFailed] = useState('');
     const [apiError, setApiError] = useState('');
@@ -36,6 +40,31 @@ const SignUpScreen = ({ navigation }) => {
         },
     });
     
+    useEffect(() => {
+        const fetchUsernames = async () => {
+            try {
+                const usernameList = await getUsernames();
+                setUsernames(usernameList);
+            } catch (error) {
+                console.error("Failed to fetch usernames:", error);
+            }
+        };
+        fetchUsernames();
+    }, [])
+
+    const usernameValue = useWatch({
+        control,
+        name: 'username',
+    });
+
+    useEffect(() => {
+        if (usernameValue) {
+            setTypingStarted(true);
+            setUsernameTaken(usernames.includes(usernameValue));
+        } else {
+            setTypingStarted(false);
+        }
+    }, [usernameValue]);
 
     const onSubmit = async (data) => {
         setLoading(true);
@@ -80,6 +109,14 @@ const SignUpScreen = ({ navigation }) => {
                             />
                         )}
                     />
+                    {typingStarted && (
+                        <View style={styles.flexRow}>
+                            <Ionicons name={usernameTaken ? 'close-circle' : 'checkmark-circle'} size={24} color="white" />
+                            <Text style={globalStyles.label}>
+                                {usernameTaken ? ' Username not available' : ' Username available'}
+                            </Text>
+                        </View>
+                    )}
                     <Controller
                         control={control}
                         name="email"
@@ -170,6 +207,11 @@ const styles = StyleSheet.create({
         marginTop: 4,
     },
     center: {
+        alignItems: 'center'
+    },
+    flexRow: {
+        flex: 1,
+        flexDirection: 'row',
         alignItems: 'center'
     }
 })
