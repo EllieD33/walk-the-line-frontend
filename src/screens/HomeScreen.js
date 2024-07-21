@@ -1,4 +1,3 @@
-import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import FullMapView from "../components/FullMapView";
 import SegmentedButton from "../components/buttons/SegmentedButton";
