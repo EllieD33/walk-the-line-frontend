@@ -7,6 +7,7 @@ import CustomTextInput from "../components/form-components/CustomTextInput";
 import FormButton from "../components/form-components/FormButton";
 import AuthStackLayout from "../layouts/AuthStackLayout";
 import globalStyles from "../styles/globalStyles";
+import { signUp } from '../api'
 
 const schema = yup.object().shape({
     username: yup.string().required('Username is required'),
@@ -19,6 +20,8 @@ const schema = yup.object().shape({
 
 const SignUpScreen = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
+    const [signUpFailed, setSignUpFailed] = useState('');
+    const [apiError, setApiError] = useState('');
     const {
         control,
         handleSubmit,
@@ -34,9 +37,23 @@ const SignUpScreen = ({ navigation }) => {
     });
     
 
-    const onSubmit = (data) => {
-        console.log(data);
-        //Add logic
+    const onSubmit = async (data) => {
+        setLoading(true);
+        setSignUpFailed('');
+        setApiError('');
+        try {
+            const response = await signUp(data)
+            if (response.success) {
+                reset();
+                navigation.navigate('Login');
+            } else {
+                setSignUpFailed('Sign up failed');
+            }
+        } catch (error) {
+            setApiError('An unexpected error occurred');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -117,6 +134,9 @@ const SignUpScreen = ({ navigation }) => {
                             />
                         )}
                     />
+                    <Text style={[globalStyles.errorText, styles.centredText]}>
+                    {signUpFailed || apiError || ''}
+                </Text>
                     <FormButton
                         role={"submit"}
                         text="Sign up"

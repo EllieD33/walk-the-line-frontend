@@ -27,3 +27,24 @@ export const logIn = async (credentials) => {
         }
     }
 };
+
+export const signUp = async (formData) => {
+    try {
+        const { data } = await authApi.post("/users/signup", formData);
+        return { success: true, user: data.user };
+    } catch (error) {
+        if (error.response) {
+            return {
+                success: false,
+                message: `Server error: ${error.response.message}`,
+            };
+        } else if (error.request) {
+            return {
+                success: false,
+                message: "No response received from the server",
+            };
+        } else {
+            return { success: false, message: `Error: ${error.message}` };
+        }
+    }
+}
