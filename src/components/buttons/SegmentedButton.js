@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
-import globalStyles from "../styles/globalStyles";
+import globalStyles from "../../styles/globalStyles";
 
 const SegmentedButton = ({ options, onSelect }) => {
     const [selectedIndex, setSelectedIndex] = useState(null);
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         borderRightWidth: 0,
     },
     selectedButton: {
-        backgroundColor: "#4AC483", 
+        backgroundColor: "#4AC483",
     },
     selectedButtonText: {
         color: "#fff",
