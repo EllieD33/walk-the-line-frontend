@@ -6,6 +6,7 @@ import * as Font from 'expo-font';
 import { setFontsLoaded } from '../src/store/slices/themeSlice';
 import ErrorBoundary from './components/ErrorBoundary';
 import AuthNavigator from './navigators/AuthNavigator';
+import MainNavigator from './navigators/MainNavigator';
 
 
 const AppContent = () => {
@@ -44,7 +45,7 @@ const AppContent = () => {
     return (
         <ErrorBoundary>
             <NavigationContainer>
-                {isAuthenticated ? <Text>Will be main Nav</Text> : <AuthNavigator />}
+                {isAuthenticated ? <MainNavigator /> : <AuthNavigator />}
             </NavigationContainer>
         </ErrorBoundary>
     );

@@ -5,7 +5,7 @@ import LoginScreen from "../screens/LoginScreen";
 
 const AuthStack = createStackNavigator();
 
-function AuthNavigator() {
+const AuthNavigator = () => {
     return (
         <AuthStack.Navigator
         screenOptions={{

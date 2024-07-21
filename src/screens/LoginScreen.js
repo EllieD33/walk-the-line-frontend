@@ -35,8 +35,7 @@ function LoginScreen({ navigation }) {
             if (response.success) {
                 reset();
                 dispatch(loggedInUser(response.user)); 
-                // Will navigate to HomeScreen
-                console.log('Login successful', response);
+                navigation.navigate('Home');
             } else {
                 setLogInFailed(response.message  || 'Invalid credentials');
             }
