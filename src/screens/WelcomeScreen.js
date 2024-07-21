@@ -1,6 +1,6 @@
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import AppName from "../components/AppName";
-import NavButton from "../components/NavButton";
+import NavButton from "../components/nav-components/NavButton";
 
 const WelcomeScreen = ({ navigation }) => {
 

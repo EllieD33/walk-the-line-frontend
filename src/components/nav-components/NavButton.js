@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, Text, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import globalStyles from '../styles/globalStyles';
+import globalStyles from '../../styles/globalStyles';
 
 const NavButton = ({ text, onPress, isOutline }) => {
     return (
