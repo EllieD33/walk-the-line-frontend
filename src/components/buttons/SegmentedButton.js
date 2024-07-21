@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import globalStyles from "../../styles/globalStyles";
 
-const SegmentedButton = ({ options, onSelect }) => {
-    const [selectedIndex, setSelectedIndex] = useState(null);
+const SegmentedButton = ({ options, onSelect , defaultIndex = 0 }) => {
+    const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
+
+    useEffect(() => {
+        if (onSelect) {
+            onSelect(defaultIndex);
+        }
+    }, [defaultIndex, onSelect]);
 
     const handlePress = (index) => {
         setSelectedIndex(index);
