@@ -5,8 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import * as Font from 'expo-font';
 import { setFontsLoaded } from '../src/store/slices/themeSlice';
 import ErrorBoundary from './components/ErrorBoundary';
-import AuthNavigator from './navigators/AuthNavigator';
-import MainNavigator from './navigators/MainNavigator';
+import AppNavigator from './navigators/AppNavigator';
 
 
 const AppContent = () => {
@@ -45,7 +44,7 @@ const AppContent = () => {
     return (
         <ErrorBoundary>
             <NavigationContainer>
-                {isAuthenticated ? <MainNavigator /> : <AuthNavigator />}
+                <AppNavigator />
             </NavigationContainer>
         </ErrorBoundary>
     );

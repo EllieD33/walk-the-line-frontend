@@ -35,7 +35,17 @@ function LoginScreen({ navigation }) {
             if (response.success) {
                 reset();
                 dispatch(loggedInUser(response.user)); 
-                navigation.navigate('Home');
+                navigation.reset({
+                    index: 0,
+                    routes: [
+                        {
+                            name: 'Main', // Name of the tab navigator
+                            state: {
+                                routes: [{ name: 'Home' }] // Name of the tab screen
+                            }
+                        }
+                    ]
+                });
             } else {
                 setLogInFailed(response.message  || 'Invalid credentials');
             }

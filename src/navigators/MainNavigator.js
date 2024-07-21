@@ -1,17 +1,21 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import RecordWalkScreen from "../screens/RecordWalkScreen";
 
-const MainStack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const MainNavigator = () => {
     return (
-        <MainStack.Navigator
+        <Tab.Navigator
             screenOptions={{
                 headerShown: false,
             }}
         >
-            <MainStack.Screen name="Home" component={HomeScreen} />
-        </MainStack.Navigator>
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Record" component={RecordWalkScreen} />
+            <Tab.Screen name="Profile" component={ProfileScreen} />
+        </Tab.Navigator>
     )
 }
 

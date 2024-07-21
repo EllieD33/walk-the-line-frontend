@@ -21,9 +21,7 @@ const FullMapView = () => {
                     setIsLoading(false);
                     return;
                 }
-                console.log("Fetching current location...");
                 let location = await Location.getCurrentPositionAsync({});
-                console.log("Location fetched:", location);
                 setRegion({
                     latitude: location.coords.latitude,
                     longitude: location.coords.longitude,
