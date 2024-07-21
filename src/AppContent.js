@@ -19,11 +19,13 @@ const AppContent = () => {
                     'satisfy-regular': require('../assets/fonts/Satisfy-Regular.ttf'),
                     'montserrat-regular': require('../assets/fonts/Montserrat-Regular.ttf'),
                     'montserrat-bold': require('../assets/fonts/Montserrat-Bold.ttf'),
+                    'montserrat-medium': require('../assets/fonts/Montserrat-Medium.ttf'),
                 });
 
                 dispatch(setFontsLoaded({ fontName: 'satisfy', loaded: true }));
                 dispatch(setFontsLoaded({ fontName: 'montserrat', loaded: true }));
                 dispatch(setFontsLoaded({ fontName: 'montserratBold', loaded: true }));
+                dispatch(setFontsLoaded({ fontName: 'montserratMedium', loaded: true }));
         };
 
         loadFonts();

@@ -7,6 +7,7 @@ const themeSlice = createSlice({
             satisfy: false,
             montserrat: false,
             montserratBold: false,
+            montserratMedium: false,
         }
     }, reducers: {
         setFontsLoaded: (state, action) => {

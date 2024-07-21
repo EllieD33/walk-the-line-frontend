@@ -28,9 +28,9 @@ const globalStyles = StyleSheet.create({
         color: '#fff'
     },
     errorText: {
-        fontFamily: 'montserrat-regular',
+        fontFamily: 'montserrat-medium',
         fontSize: 14,
-        color: 'red'
+        color: '#BD0000'
     }
 });
 
