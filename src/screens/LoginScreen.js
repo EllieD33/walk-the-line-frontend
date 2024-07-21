@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import { useDispatch } from 'react-redux';  // 
+import { useDispatch } from 'react-redux'; 
+import * as SecureStore from 'expo-secure-store';
 import CustomTextInput from "../components/form-components/CustomTextInput";
 import FormButton from "../components/form-components/FormButton";
 import AuthStackLayout from '../layouts/AuthStackLayout'; 
@@ -14,40 +15,37 @@ function LoginScreen({ navigation }) {
     const [loading, setLoading] = useState(false);
     const [logInFailed, setLogInFailed] = useState('');
     const [apiError, setApiError] = useState('');
-    const {
-        control,
-        handleSubmit,
-        formState: { errors },
-        reset,
-    } = useForm({
+    const { control, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             username: "",
             password: "",
         },
     });
 
+    const storeUser = async (user) => {
+        try {
+            await SecureStore.setItemAsync('user', JSON.stringify(user));
+        } catch (error) {
+            console.error('Failed to save the user to storage', error);
+        }
+    };
+
     const onSubmit = async (data) => {
         setLoading(true);
         setLogInFailed('');
         setApiError('');
         try {
-            const response = await logIn(data)
+            const response = await logIn(data);
             if (response.success) {
                 reset();
-                dispatch(loggedInUser(response.user)); 
+                dispatch(loggedInUser(response.user));
+                await storeUser(response.user);
                 navigation.reset({
                     index: 0,
-                    routes: [
-                        {
-                            name: 'Main', // Name of the tab navigator
-                            state: {
-                                routes: [{ name: 'Home' }] // Name of the tab screen
-                            }
-                        }
-                    ]
+                    routes: [{ name: 'Main' }]
                 });
             } else {
-                setLogInFailed(response.message  || 'Invalid credentials');
+                setLogInFailed(response.message || 'Invalid credentials');
             }
         } catch (error) {
             setApiError(error.message || 'An unexpected error occurred');
@@ -98,7 +96,7 @@ function LoginScreen({ navigation }) {
                         />
                     )}
                 />
-                <Text style={[globalStyles.errorText,styles.centredText]}>
+                <Text style={[globalStyles.errorText, styles.centredText]}>
                     {logInFailed || apiError || ''}
                 </Text>
                 <FormButton
@@ -111,14 +109,14 @@ function LoginScreen({ navigation }) {
                     accessibilityHint="Double tap to log in"
                 />
             </View>
-            <View style={styles.center} >
+            <View style={styles.center}>
                 <Text style={[globalStyles.textWhite, styles.centredText]}>Don't have an account?</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text style={[globalStyles.textBoldDark, styles.link]}>Sign up</Text>
                 </TouchableOpacity>
             </View>
         </AuthStackLayout>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
