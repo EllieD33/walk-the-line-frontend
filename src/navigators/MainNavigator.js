@@ -1,8 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import RecordWalkScreen from "../screens/RecordWalkScreen";
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import HomeStackNavigator from "./main-stack-navigators/HomeStackNavigator";
+import RecordWalkStackNavigator from "./main-stack-navigators/RecordStackNavigator";
+import ProfileStackNavigator from "./main-stack-navigators/ProfileStackNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -14,15 +15,15 @@ const MainNavigator = () => {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 
-                    if (route.name === 'Home') {
+                    if (route.name === 'HomeTab') {
                         iconName = 'map-sharp';
-                    } else if (route.name === 'Record') {
+                    } else if (route.name === 'RecordTab') {
                         iconName = 'record-circle-outline';
-                    } else if (route.name === 'Profile') {
+                    } else if (route.name === 'ProfileTab') {
                         iconName = 'person';
                     }
 
-                    return route.name === 'Record' ? <MaterialCommunityIcons name={iconName} size={size} color={color} /> : <Ionicons name={iconName} size={size} color={color} />;
+                    return route.name === 'RecordTab' ? <MaterialCommunityIcons name={iconName} size={size} color={color} /> : <Ionicons name={iconName} size={size} color={color} />;
                 },
                 tabBarActiveTintColor: '#fff',
                 tabBarActiveBackgroundColor: '#4AC483',
@@ -38,9 +39,9 @@ const MainNavigator = () => {
                 tabBarAccessibilityLabel: route.name,
             })}
         >
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Record" component={RecordWalkScreen} />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
+            <Tab.Screen name="HomeTab" component={HomeStackNavigator} />
+            <Tab.Screen name="RecordTab" component={RecordWalkStackNavigator} />
+            <Tab.Screen name="ProfileTab" component={ProfileStackNavigator} />
         </Tab.Navigator>
     )
 }
