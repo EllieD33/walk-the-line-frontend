@@ -3,8 +3,8 @@ import { View, StyleSheet, ActivityIndicator } from "react-native";
 import MapView, { Polyline, UrlTile } from "react-native-maps";
 import { getWalkLocationPoints } from "../api";
 
-const MapWithPolyLines = ({ walkId }) => {
-    const [region, setRegion] = useState(null);
+const MapWithPolyLines = ({ walkId, customRegion }) => {
+    const [region, setRegion] = useState(customRegion || null);
     const [isLoading, setIsLoading] = useState(true);
     const [locationPoints, setLocationPoints] = useState([]);
 
@@ -21,13 +21,15 @@ const MapWithPolyLines = ({ walkId }) => {
                     const minLong = Math.min(...longitudes);
                     const maxLong = Math.max(...longitudes);
 
-                    setRegion({
-                        latitude: (minLat + maxLat) / 2,
-                        longitude: (minLong + maxLong) / 2,
-                        latitudeDelta: (maxLat - minLat) * 1.2,
-                        longitudeDelta: (maxLong - minLong) * 1.2,
-                    });
-                }
+                    if (!customRegion) {
+                            setRegion({
+                            latitude: (minLat + maxLat) / 2,
+                            longitude: (minLong + maxLong) / 2,
+                            latitudeDelta: (maxLat - minLat) * 1.2,
+                            longitudeDelta: (maxLong - minLong) * 1.2,
+                        });
+                    }
+                    }
             } catch (error) {
                 console.error("Error retrieving location points:", error);
             } finally {
