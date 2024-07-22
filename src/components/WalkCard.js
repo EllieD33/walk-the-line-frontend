@@ -1,8 +1,13 @@
 import { View, StyleSheet, Text } from "react-native";
 import MetricView from "./MetricView";
+import NavButton from "./buttons/NavButton"
 import globalStyles from "../styles/globalStyles";
 
-const WalkCard = ({ walk }) => {
+const WalkCard = ({ walk, navigation }) => {
+    const handleReadMorePress = () => {
+        navigation.navigate("WalkDetails");
+    };
+
     return (
         <View style={styles.card} >
             <Text style={globalStyles.textBoldDark} >{walk.title}</Text>
@@ -12,6 +17,7 @@ const WalkCard = ({ walk }) => {
                 <MetricView iconName='slope-uphill' value={`${walk.ascent} m`} />
                 <MetricView iconName='speedometer' value={`${walk.difficulty}/10`}/>
             </View>
+            <NavButton text='Read more >' onPress={handleReadMorePress} isOutline={false} />
         </View>
     )
 };

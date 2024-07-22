@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectAllWalks } from "../store/slices/walksSlice";
 import WalkCard from "./WalkCard";
 
-const ListView = () => {
+const ListView = ({ navigation }) => {
     const walks = useSelector(selectAllWalks);
 
     if (!walks) {
@@ -17,7 +17,7 @@ const ListView = () => {
                 data={walks}
                 keyExtractor={(walk) => walk.walk_id.toString()}
                 renderItem={({ item: walk }) => (
-                    <WalkCard walk={walk} />
+                    <WalkCard walk={walk} navigation={navigation} />
                 )}
             />
         </View>

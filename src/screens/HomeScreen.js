@@ -4,7 +4,7 @@ import FullMapView from "../components/FullMapView";
 import ListView from "../components/ListView";
 import SegmentedButton from "../components/buttons/SegmentedButton";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     const [selectedView, setSelectedView] = useState(0);
 
     return (
@@ -14,7 +14,7 @@ const HomeScreen = () => {
                 selectedIndex={selectedView}
                 onSelect={setSelectedView}
             />
-            {selectedView === 0 ? <FullMapView /> : <ListView />}
+            {selectedView === 0 ? <FullMapView /> : <ListView navigation={navigation} />}
         </SafeAreaView>
     );
 };
