@@ -31,7 +31,28 @@ const globalStyles = StyleSheet.create({
         fontFamily: 'montserrat-medium',
         fontSize: 14,
         color: '#BD0000'
-    }
+    },
+    button: {
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: '#D4EADF',
+        marginTop: 10,
+    },
+    buttonOutline: {
+        backgroundColor: 'transparent',
+    },
+    buttonFilled: {
+        backgroundColor: '#D4EADF',
+    },
+    buttonTextOutline: {
+        color: 'white',
+    },
+    buttonTextFilled: {
+        color: '#232323', 
+    },
 });
 
 export default globalStyles;

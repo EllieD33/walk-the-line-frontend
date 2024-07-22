@@ -17,7 +17,7 @@ const WalkCard = ({ walk, navigation }) => {
                 <MetricView iconName='slope-uphill' value={`${walk.ascent} m`} />
                 <MetricView iconName='speedometer' value={`${walk.difficulty}/10`}/>
             </View>
-            <NavButton text='Read more >' onPress={handleReadMorePress} isOutline={false} />
+            <NavButton text='View walk' onPress={handleReadMorePress} isOutline={false} />
         </View>
     )
 };
