@@ -36,4 +36,8 @@ const walksSlice = createSlice({
     }
 })
 
+export const selectAllWalks = (state) => state.walks.walks;
+export const getWalksStatus = (state) => state.walks.status;
+export const getWalksError = (state) => state.walks.error;
+
 export default walksSlice.reducer;
