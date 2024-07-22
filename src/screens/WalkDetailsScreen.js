@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { SafeAreaView, Text, ActivityIndicator, StyleSheet } from "react-native";
+import { SafeAreaView, Text, View, StyleSheet } from "react-native";
 import * as Location from "expo-location";
 import MapWithPolyLines from "../components/MapWithPolyLines";
+import globalStyles from "../styles/globalStyles";
+import MetricView from "../components/MetricView";
 
 const WalkDetailsScreen = ({ navigation, route }) => {
     const [startAddress, setStartAddress] = useState(null);
@@ -36,28 +38,43 @@ const WalkDetailsScreen = ({ navigation, route }) => {
     }, []);
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.screen}>
             <MapWithPolyLines walkId={walk.walk_id} />
-            <Text>{walk.title}</Text>
-            <Text>{walk.description}</Text>
-            <Text>{`${walk.distance_km} km`}</Text>
-            <Text>{`${walk.ascent} m`}</Text>
-            <Text>{`${walk.difficulty}/10`}</Text>
-            <Text>Start at: {startAddress}</Text>
+            <View style={styles.container}>
+                <Text style={[globalStyles.h1, {textAlign: 'center'}]} >{walk.title}</Text>
+                <Text style={[globalStyles.textDark, {textAlign: 'center'}]}>{walk.description}</Text>
+                <View style={styles.metricContainer}>
+                    <MetricView iconName={'walk'} value={`Distance: ${walk.distance_km} km`} />
+                    <MetricView iconName='slope-uphill' value={`Total Ascent: ${walk.ascent} m`} />
+                </View>
+                <View style={styles.center} >
+                    <MetricView iconName='speedometer' value={`Difficulty: ${walk.difficulty}/10`}/>
+                    <MetricView iconName='map-marker' value={`Start at: ${startAddress}`}/>
+                </View>
+            </View>
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    screen: {
         flex: 1,
         paddingTop: 40,
     },
-    center: {
+    container: {
         flex: 1,
+        padding: 10,
+        justifyContent: 'flex-start',
+    },
+    center: {
         justifyContent: 'center',
         alignItems: 'center'
     },
+    metricContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginVertical: 4,
+    }
 });
 
 export default WalkDetailsScreen;
