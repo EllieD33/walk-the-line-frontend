@@ -1,15 +1,12 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { View, ActivityIndicator, Text, StyleSheet } from "react-native";
 import * as Location from 'expo-location';
 import MapView, { Callout, Marker, UrlTile } from "react-native-maps";
-import { fetchWalks, selectAllWalks, getWalksStatus  } from "../store/slices/walksSlice";
+import { selectAllWalks  } from "../store/slices/walksSlice";
 
 const FullMapView = () => {
-    const dispatch = useDispatch();
-    const walks = useSelector(selectAllWalks);
-    const status = useSelector(getWalksStatus);
-    
+    const walks = useSelector(selectAllWalks);    
     const [region, setRegion] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -38,13 +35,7 @@ const FullMapView = () => {
         };
         initialiseMap();
     }, []);
-
-    useEffect(() => {
-        if (status === 'idle') {
-            dispatch(fetchWalks());
-        }
-    }, [dispatch, status]);
-
+    
     const tileUrl = "https://tile.openstreetmap.de/{z}/{x}/{y}.png";
 
     if (isLoading) {
