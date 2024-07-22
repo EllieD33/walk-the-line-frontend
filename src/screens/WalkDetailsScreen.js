@@ -1,6 +1,6 @@
 import { SafeAreaView, Text } from "react-native"
 
-const ProfileScreen = () => {
+const WalkDetailsScreen = () => {
     return (
         <SafeAreaView>
             <Text>WALK DETAILS SCREEN</Text>
@@ -8,4 +8,4 @@ const ProfileScreen = () => {
     )
 };
 
-export default ProfileScreen;
+export default WalkDetailsScreen;
