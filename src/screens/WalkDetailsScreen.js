@@ -4,6 +4,7 @@ import * as Location from "expo-location";
 import MapWithPolyLines from "../components/MapWithPolyLines";
 import globalStyles from "../styles/globalStyles";
 import MetricView from "../components/MetricView";
+import NavButton from "../components/buttons/NavButton";
 
 const WalkDetailsScreen = ({ navigation, route }) => {
     const [startAddress, setStartAddress] = useState(null);
@@ -37,6 +38,10 @@ const WalkDetailsScreen = ({ navigation, route }) => {
         fetchStartAddress();
     }, []);
 
+    const handleFollowPress = () => {
+        navigation.navigate("FollowRoute", { walk });
+    }
+
     return (
         <SafeAreaView style={styles.screen}>
             <MapWithPolyLines walkId={walk.walk_id} />
@@ -49,7 +54,13 @@ const WalkDetailsScreen = ({ navigation, route }) => {
                 </View>
                 <View style={styles.center} >
                     <MetricView iconName='speedometer' value={`Difficulty: ${walk.difficulty}/10`}/>
-                    <MetricView iconName='map-marker' value={`Start at: ${startAddress}`}/>
+                </View>
+                <View style={styles.center} >
+                    <MetricView iconName='map-marker' value={`Start at:`}/>
+                    <Text style={[globalStyles.textDark, {textAlign: 'center'}]}>{startAddress}</Text>
+                </View>
+                <View style={{marginTop: 8}} >
+                    <NavButton text='Follow route' onPress={handleFollowPress} isOutline={false} />
                 </View>
             </View>
         </SafeAreaView>
