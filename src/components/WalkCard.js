@@ -5,7 +5,7 @@ import globalStyles from "../styles/globalStyles";
 
 const WalkCard = ({ walk, navigation }) => {
     const handleReadMorePress = () => {
-        navigation.navigate("WalkDetails");
+        navigation.navigate("WalkDetails", { walk });
     };
 
     return (
