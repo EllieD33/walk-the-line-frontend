@@ -1,17 +1,20 @@
+import { useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import FullMapView from "../components/FullMapView";
+import ListView from "../components/ListView";
 import SegmentedButton from "../components/buttons/SegmentedButton";
 
 const HomeScreen = () => {
-    const onSelect = () => {};
+    const [selectedView, setSelectedView] = useState(0);
 
     return (
         <SafeAreaView style={styles.container}>
             <SegmentedButton
                 options={["Map view", "List view"]}
-                onSelect={onSelect}
+                selectedIndex={selectedView}
+                onSelect={setSelectedView}
             />
-            <FullMapView />
+            {selectedView === 0 ? <FullMapView /> : <ListView />}
         </SafeAreaView>
     );
 };

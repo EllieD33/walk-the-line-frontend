@@ -1,23 +1,7 @@
-import { useState, useEffect } from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import globalStyles from "../../styles/globalStyles";
 
-const SegmentedButton = ({ options, onSelect , defaultIndex = 0 }) => {
-    const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
-
-    useEffect(() => {
-        if (onSelect) {
-            onSelect(defaultIndex);
-        }
-    }, [defaultIndex, onSelect]);
-
-    const handlePress = (index) => {
-        setSelectedIndex(index);
-        if (onSelect) {
-            onSelect(index);
-        }
-    };
-
+const SegmentedButton = ({ options, selectedIndex, onSelect}) => {
     return (
         <View style={styles.container}>
             {options.map((option, index) => (
@@ -29,7 +13,7 @@ const SegmentedButton = ({ options, onSelect , defaultIndex = 0 }) => {
                         index === options.length - 1 && styles.lastButton,
                         selectedIndex === index && styles.selectedButton,
                     ]}
-                    onPress={() => handlePress(index)}
+                    onPress={() => onSelect(index)}
                 >
                     <Text
                         style={[
