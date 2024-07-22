@@ -1,10 +1,16 @@
-import { FlatList, View, StyleSheet } from "react-native"
+import { FlatList, View, StyleSheet, ActivityIndicator } from "react-native"
 import { useSelector } from 'react-redux';
 import { selectAllWalks } from "../store/slices/walksSlice";
 import WalkCard from "./WalkCard";
 
 const ListView = () => {
     const walks = useSelector(selectAllWalks);
+
+    if (!walks) {
+        return <ActivityIndicator style={styles.center} size="large" />;
+    }
+
+
     return (
         <View style={styles.container} >
             <FlatList 
