@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { SafeAreaView, Text, View, StyleSheet } from "react-native";
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Text, View, StyleSheet } from "react-native";
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Location from "expo-location";
 import MapWithPolyLines from "../components/MapWithPolyLines";
 import globalStyles from "../styles/globalStyles";

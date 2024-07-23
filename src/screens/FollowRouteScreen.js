@@ -1,7 +1,7 @@
-import { SafeAreaView, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import MapWithPolyLines from "../components/MapWithPolyLines";
 import MetricView from "../components/MetricView";
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const FollowRouteScreen = ({ navigation, route }) => {
     const { walk } = route.params;

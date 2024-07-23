@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { SafeAreaView, StyleSheet, ActivityIndicator } from "react-native";
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { StyleSheet, ActivityIndicator } from "react-native";
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import FullMapView from "../components/FullMapView";
 import ListView from "../components/ListView";
 import SegmentedButton from "../components/buttons/SegmentedButton";

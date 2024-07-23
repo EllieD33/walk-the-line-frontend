@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { SafeAreaView, Text, StyleSheet, View, Button } from "react-native";
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Text, StyleSheet, View } from "react-native";
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Location from "expo-location";
 import haversine from "haversine-distance";
