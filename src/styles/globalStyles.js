@@ -22,6 +22,11 @@ const globalStyles = StyleSheet.create({
         fontSize: FONT_SIZES.medium,
         color: '#fff'
     },
+    textDarkLarge: {
+        fontFamily: 'montserrat-regular',
+        fontSize: FONT_SIZES.large,
+        color: COLORS.dark
+    },
     label: {
         fontFamily: 'montserrat-regular',
         fontSize: 14,
@@ -38,14 +43,17 @@ const globalStyles = StyleSheet.create({
         paddingHorizontal: 20,
         borderStyle: 'solid',
         borderWidth: 1,
-        borderColor: '#D4EADF',
+        borderColor: COLORS.light,
         marginTop: 10,
     },
     buttonOutline: {
         backgroundColor: 'transparent',
     },
     buttonFilled: {
-        backgroundColor: '#D4EADF',
+        backgroundColor: COLORS.light,
+    },
+    buttonFilledPrimary: {
+        backgroundColor: COLORS.primary,
     },
     buttonTextOutline: {
         color: 'white',

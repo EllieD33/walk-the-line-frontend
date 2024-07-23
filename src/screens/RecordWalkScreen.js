@@ -4,6 +4,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Location from "expo-location";
 import haversine from "haversine-distance";
 import MapWithPolyLines from "../components/MapWithPolyLines";
+import NavButton from "../components/buttons/NavButton";
+import globalStyles from "../styles/globalStyles";
 
 const RecordWalkScreen = () => {
     const [region, setRegion] = useState(null);
@@ -108,15 +110,17 @@ const RecordWalkScreen = () => {
             </View>
             <View style={styles.info}>
                 <View style={styles.metric}>
-                <MaterialCommunityIcons name="walk" size={30} />
-                <Text>{totalDistance.toFixed(2)} km</Text>
+                    <MaterialCommunityIcons name="walk" size={30} color={'#4AC483'}/>
+                    <Text style={[globalStyles.textDarkLarge, {marginLeft: 4}]} >{totalDistance.toFixed(2)} km</Text>
                 </View>
                 <View style={styles.metric}>
-                <MaterialCommunityIcons name="slope-uphill" size={30} />
-                <Text>{totalAscent.toFixed(2)} m</Text>
+                    <MaterialCommunityIcons name="slope-uphill" size={30} color={'#4AC483'} />
+                    <Text style={[globalStyles.textDarkLarge, {marginLeft: 6}]} >{totalAscent.toFixed(2)} m</Text>
                 </View>
             </View>
-            <Button title={isTracking ? "Stop Tracking" : "Start Tracking"} onPress={isTracking ? handleStop : handleStart} />
+            <View style={styles.buttonContainer} >
+                <NavButton text={isTracking ? "Stop Tracking" : "Start Tracking"} onPress={isTracking ? handleStop : handleStart} isOutline={false} buttonWidth={200} color={'primary'} />
+            </View>
         </SafeAreaView>
     )
 };
@@ -124,6 +128,7 @@ const RecordWalkScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#D4EADF'
     },
     mapContainer: {
         flex: 3,
@@ -138,6 +143,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    buttonContainer: {
+        alignItems: 'center',
+        paddingBottom: 8,
+    }
 });
 
 export default RecordWalkScreen;
