@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { SafeAreaView, Text, View, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Location from "expo-location";
 import MapWithPolyLines from "../components/MapWithPolyLines";
 import globalStyles from "../styles/globalStyles";
@@ -9,6 +10,7 @@ import NavButton from "../components/buttons/NavButton";
 const WalkDetailsScreen = ({ navigation, route }) => {
     const [startAddress, setStartAddress] = useState(null);
     const { walk } = route.params;
+    const insets = useSafeAreaInsets();
 
     useEffect(() => {
         const getAddressFromCoords = async (latitude, longitude) => {
@@ -43,7 +45,7 @@ const WalkDetailsScreen = ({ navigation, route }) => {
     }
 
     return (
-        <SafeAreaView style={styles.screen}>
+        <SafeAreaView style={[styles.screen, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
             <MapWithPolyLines walkId={walk.walk_id} />
             <View style={styles.container}>
                 <Text style={[globalStyles.h1, {textAlign: 'center'}]} >{walk.title}</Text>
@@ -70,7 +72,6 @@ const WalkDetailsScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        paddingTop: 40,
     },
     container: {
         flex: 1,

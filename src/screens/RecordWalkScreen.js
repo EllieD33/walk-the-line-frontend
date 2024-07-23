@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { SafeAreaView, Text, StyleSheet, View, Button } from "react-native";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Location from "expo-location";
 import haversine from "haversine-distance";
@@ -14,6 +15,7 @@ const RecordWalkScreen = () => {
     const [totalAscent, setTotalAscent] = useState(0);
     const [isTracking, setIsTracking] = useState(false);
     const locationSubscription = useRef(null);
+    const insets = useSafeAreaInsets();
 
     useEffect(() => {
         const initialiseLocation = async () => {
@@ -98,7 +100,7 @@ const RecordWalkScreen = () => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
             <View style={styles.mapContainer}>
                 {region && (
                 <MapWithPolyLines 
@@ -132,6 +134,7 @@ const styles = StyleSheet.create({
     },
     mapContainer: {
         flex: 3,
+        maxHeight: '100%'
     },
     info: {
         flexDirection: 'row',

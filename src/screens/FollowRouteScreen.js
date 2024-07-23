@@ -1,10 +1,12 @@
 import { SafeAreaView, View, StyleSheet } from "react-native";
 import MapWithPolyLines from "../components/MapWithPolyLines";
 import MetricView from "../components/MetricView";
-import globalStyles from "../styles/globalStyles";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const FollowRouteScreen = ({ navigation, route }) => {
     const { walk } = route.params;
+    const insets = useSafeAreaInsets();
+
     const zoomedRegion = {
         latitude: walk.start_latitude,
         longitude: walk.start_longitude,
@@ -13,7 +15,7 @@ const FollowRouteScreen = ({ navigation, route }) => {
     }
 
     return (
-        <SafeAreaView style={styles.screen}>
+        <SafeAreaView style={[styles.screen, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
             <MapWithPolyLines walkId={walk.walk_id} customRegion={zoomedRegion} />
             <View style={styles.container} >
                 <MetricView iconName='sign-direction' value={`Currently following route: ${walk.title}`}/>
@@ -25,7 +27,6 @@ const FollowRouteScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        paddingTop: 40,
     },
     container: {
         marginBottom: 8,

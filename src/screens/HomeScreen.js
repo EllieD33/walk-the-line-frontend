@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView, StyleSheet, ActivityIndicator } from "react-native";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import FullMapView from "../components/FullMapView";
 import ListView from "../components/ListView";
 import SegmentedButton from "../components/buttons/SegmentedButton";
@@ -10,6 +11,7 @@ const HomeScreen = ({ navigation }) => {
     const [selectedView, setSelectedView] = useState(0);
     const dispatch = useDispatch();
     const status = useSelector(getWalksStatus);
+    const insets = useSafeAreaInsets();
 
     useEffect(() => {
         if (status === 'idle') {
@@ -22,7 +24,7 @@ const HomeScreen = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
             <SegmentedButton
                 options={["Map view", "List view"]}
                 selectedIndex={selectedView}
@@ -36,7 +38,6 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 40,
         backgroundColor: "#D4EADF",
     },
     center: {
