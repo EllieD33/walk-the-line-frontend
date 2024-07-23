@@ -3,42 +3,48 @@ import { View, StyleSheet, ActivityIndicator } from "react-native";
 import MapView, { Polyline, UrlTile } from "react-native-maps";
 import { getWalkLocationPoints } from "../api";
 
-const MapWithPolyLines = ({ walkId, customRegion }) => {
+const MapWithPolyLines = ({ walkId, customRegion, liveLocationPoints }) => {
     const [region, setRegion] = useState(customRegion || null);
     const [isLoading, setIsLoading] = useState(true);
     const [locationPoints, setLocationPoints] = useState([]);
 
     useEffect(() => {
-        const fetchLocationPoints = async () => {
-            try {
-                const points = await getWalkLocationPoints(walkId);
-                setLocationPoints(points);
-                if (points.length > 0) {
-                    const latitudes = points.map(point => point.latitude);
-                    const longitudes = points.map(point => point.longitude);
-                    const minLat = Math.min(...latitudes);
-                    const maxLat = Math.max(...latitudes);
-                    const minLong = Math.min(...longitudes);
-                    const maxLong = Math.max(...longitudes);
+        if (walkId === null) {
+            setLocationPoints(liveLocationPoints || []);
+            setIsLoading(false);
+        } else {
 
-                    if (!customRegion) {
-                            setRegion({
-                            latitude: (minLat + maxLat) / 2,
-                            longitude: (minLong + maxLong) / 2,
-                            latitudeDelta: (maxLat - minLat) * 1.2,
-                            longitudeDelta: (maxLong - minLong) * 1.2,
-                        });
-                    }
-                    }
-            } catch (error) {
-                console.error("Error retrieving location points:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchLocationPoints();
-    }, [walkId]);
+            const fetchLocationPoints = async () => {
+                try {
+                    const points = await getWalkLocationPoints(walkId);
+                    setLocationPoints(points);
+                    if (points.length > 0) {
+                        const latitudes = points.map(point => point.latitude);
+                        const longitudes = points.map(point => point.longitude);
+                        const minLat = Math.min(...latitudes);
+                        const maxLat = Math.max(...latitudes);
+                        const minLong = Math.min(...longitudes);
+                        const maxLong = Math.max(...longitudes);
+    
+                        if (!customRegion) {
+                                setRegion({
+                                latitude: (minLat + maxLat) / 2,
+                                longitude: (minLong + maxLong) / 2,
+                                latitudeDelta: (maxLat - minLat) * 1.2,
+                                longitudeDelta: (maxLong - minLong) * 1.2,
+                            });
+                        }
+                        }
+                } catch (error) {
+                    console.error("Error retrieving location points:", error);
+                } finally {
+                    setIsLoading(false);
+                }
+            };
+    
+            fetchLocationPoints();
+        }
+    }, [walkId, liveLocationPoints]);
 
     const tileUrl = "https://tile.openstreetmap.de/{z}/{x}/{y}.png";
 
@@ -62,7 +68,7 @@ const MapWithPolyLines = ({ walkId, customRegion }) => {
                         flipY={false}
                         tileSize={256}
                     />
-                    {locationPoints.length > 0 && (
+                    {locationPoints && locationPoints.length > 0 && (
                         <Polyline
                             coordinates={locationPoints.map(point => ({
                                 latitude: point.latitude,
