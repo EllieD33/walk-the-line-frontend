@@ -3,17 +3,18 @@ import { Text, TextInput, StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import globalStyles from '../../styles/globalStyles';
 
-const CustomTextInput = ({ label, isSecure, onChangeText, onBlur, value, error, accessibilityLabel, accessibilityHint }) => {
+const CustomTextInput = ({ label, isSecure, onChangeText, onBlur, value, error, accessibilityLabel, accessibilityHint, darkText }) => {
     const [isFocused, setIsFocused] = useState(false);
 
     return (
         <View style={styles.container}>
-            <Text style={[globalStyles.label, styles.label]}>
+            <Text style={[darkText ?  globalStyles.labelDark : globalStyles.label, styles.label]}>
                     {label}
                 </Text>
             <TextInput
                 style={[
                     styles.input,
+                    darkText ? styles.inputDark : styles.inputLight,
                     isFocused && styles.inputFocused,
                     error && styles.errorBorder
                 ]}
@@ -26,7 +27,7 @@ const CustomTextInput = ({ label, isSecure, onChangeText, onBlur, value, error, 
                 accessibilityLabel={accessibilityLabel}
                 accessibilityHint={accessibilityHint}
             />
-            {<View style={styles.line} />}
+            {<View style={darkText ? styles.lineDark : styles.line} />}
             {error && <Text style={[globalStyles.errorText, styles.errorText]}>{error}</Text>}
         </View>
     );
@@ -52,21 +53,33 @@ const styles = StyleSheet.create({
     },
     label: {
         marginTop: 5,
-        paddingLeft: 20,
     },
     input: {
         paddingVertical: 10,
-        paddingHorizontal:20,
         borderColor: 'transparent',
         borderRadius: 30,
         color: 'white',
         fontSize: 16,
-        backgroundColor: 'transparent', 
+        backgroundColor: 'transparent',
+    },
+    inputLight: {
+        color: 'white',
+        backgroundColor: 'transparent'
+    },
+    inputDark: {
+        color: '#232323',
+        backgroundColor: 'D4EADF',
     },
     line: {
         height: 1,
         backgroundColor: 'white',
         width: '90%',
+        alignSelf: 'center'
+    },
+    lineDark: {
+        height: 1,
+        backgroundColor: '#232323',
+        width: '99%',
         alignSelf: 'center'
     },
     errorBorder: {

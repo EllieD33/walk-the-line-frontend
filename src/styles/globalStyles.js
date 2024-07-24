@@ -32,6 +32,11 @@ const globalStyles = StyleSheet.create({
         fontSize: 14,
         color: '#fff'
     },
+    labelDark: {
+        fontFamily: 'montserrat-regular',
+        fontSize: 14,
+        color: COLORS.dark
+    },
     errorText: {
         fontFamily: 'montserrat-medium',
         fontSize: 14,
@@ -45,6 +50,8 @@ const globalStyles = StyleSheet.create({
         borderWidth: 1,
         borderColor: COLORS.light,
         marginTop: 10,
+        marginHorizontal: 10,
+        minWidth: 120,
     },
     buttonOutline: {
         backgroundColor: 'transparent',

@@ -11,4 +11,13 @@ export const getWalks = async () => {
     } catch (error) {
         console.log(error);
     }
-}
+};
+
+export const uploadWalk = async (walkToUpload) => {
+    try {
+        const { data } = await walksApi.post('/', walkToUpload);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};

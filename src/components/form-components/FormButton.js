@@ -17,7 +17,7 @@ FormButton.propTypes = {
     text: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,
     accessibilityLabel: PropTypes.string.isRequired,
-    accessibilityHint: PropTypes.string.isRequired,
+    accessibilityHint: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

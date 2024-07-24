@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
@@ -10,6 +10,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import AppNavigator from './navigators/AppNavigator';
 
 const AppContent = () => {
+    const [userLoading, setUserLoading] = useState(true);
     const fontsLoadedState = useSelector(state => state.theme.fontsLoaded);
     const dispatch = useDispatch();
 
@@ -36,6 +37,8 @@ const AppContent = () => {
                 }
             } catch (error) {
                 console.error('Failed to load the user from storage', error);
+            } finally {
+                setUserLoading(false);
             }
         };
 
@@ -45,7 +48,7 @@ const AppContent = () => {
 
     const fontsAreLoaded = fontsLoadedState.satisfy && fontsLoadedState.montserrat && fontsLoadedState.montserratBold;
 
-    if (!fontsAreLoaded) {
+    if (!fontsAreLoaded || userLoading) {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <ActivityIndicator size="large" color="#0000ff" />

@@ -7,6 +7,7 @@ import haversine from "haversine-distance";
 import MapWithPolyLines from "../components/MapWithPolyLines";
 import NavButton from "../components/buttons/NavButton";
 import globalStyles from "../styles/globalStyles";
+import UploadModal from "../components/UploadModal";
 
 const RecordWalkScreen = () => {
     const [region, setRegion] = useState(null);
@@ -14,6 +15,7 @@ const RecordWalkScreen = () => {
     const [totalDistance, setTotalDistance] = useState(0);
     const [totalAscent, setTotalAscent] = useState(0);
     const [isTracking, setIsTracking] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
     const locationSubscription = useRef(null);
     const insets = useSafeAreaInsets();
 
@@ -42,7 +44,7 @@ const RecordWalkScreen = () => {
             const initialLocation = {
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
-                altitude: location.coords.altitude.toFixed(2),
+                altitude: parseFloat(location.coords.altitude.toFixed(2)),
             };
             setUserLocationHistory([initialLocation]);
 
@@ -56,7 +58,7 @@ const RecordWalkScreen = () => {
                     const newLocation = {
                         latitude: location.coords.latitude,
                         longitude: location.coords.longitude,
-                        altitude: location.coords.altitude.toFixed(2),
+                        altitude: parseFloat(location.coords.altitude.toFixed(2)),
                     };
 
                     setUserLocationHistory((prev) => {
@@ -97,6 +99,7 @@ const RecordWalkScreen = () => {
             locationSubscription.current.remove();
         }
         setIsTracking(false);
+        setModalVisible(true);
     };
 
     return (
@@ -123,6 +126,16 @@ const RecordWalkScreen = () => {
             <View style={styles.buttonContainer} >
                 <NavButton text={isTracking ? "Stop Tracking" : "Start Tracking"} onPress={isTracking ? handleStop : handleStart} isOutline={false} buttonWidth={200} color={'primary'} />
             </View>
+            { modalVisible && <UploadModal
+                modalVisible={modalVisible} 
+                setModalVisible={setModalVisible} 
+                userLocationHistory={userLocationHistory}
+                totalDistance={totalDistance}
+                totalAscent={totalAscent}
+                setUserLocationHistory={setUserLocationHistory}
+                setTotalDistance={setTotalDistance} 
+                setTotalAscent={setTotalAscent} 
+            />}
         </SafeAreaView>
     )
 };

@@ -99,7 +99,7 @@ const SignUpScreen = ({ navigation }) => {
                             <CustomTextInput
                                 placeholder="Enter username"
                                 label="Username"
-                                secureTextEntry={false}
+                                isSecure={false}
                                 onChangeText={onChange}
                                 onBlur={onBlur}
                                 value={value}
