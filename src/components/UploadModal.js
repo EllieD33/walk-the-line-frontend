@@ -186,13 +186,12 @@ const UploadModal = ({
                                 loadingText="Uploading..."
                                 onPress={handleSubmit(onSubmit)}
                                 accessibilityLabel="Upload walk"
-                                style={styles.button}
+                                color='primary'
                             />
                             <FormButton 
                                 text="Discard"
                                 onPress={handleDiscardPress}
                                 accessibilityLabel="Discard walk"
-                                style={styles.button}
                             />
                         </View>
                     </>

@@ -3,11 +3,21 @@ import { Pressable, Text, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import globalStyles from '../../styles/globalStyles';
 
-const FormButton = ({ text, loading, loadingText, onPress, accessibilityLabel, accessibilityHint }) => {
+const FormButton = ({ text, loading, loadingText, onPress, accessibilityLabel, accessibilityHint, color }) => {
+    const buttonStyle = [
+        styles.button,
+        color === 'primary' && globalStyles.buttonFilledPrimary,
+    ];
+    const textStyle = [
+        globalStyles.textDark,
+        styles.buttonText,
+        color === 'primary' && globalStyles.textWhite,
+    ];
+    
     return (
         <View>
-            <Pressable disabled={loading ? true : false} onPress={onPress} style={styles.button} accessibilityLabel={accessibilityLabel} accessibilityHint={accessibilityHint} >
-                <Text style={[globalStyles.textDark, styles.buttonText]}>{loading ? loadingText : text}</Text>
+            <Pressable disabled={loading ? true : false} onPress={onPress} style={buttonStyle} accessibilityLabel={accessibilityLabel} accessibilityHint={accessibilityHint} >
+                <Text style={textStyle}>{loading ? loadingText : text}</Text>
             </Pressable>
         </View>
     );
