@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Modal, View, Text, StyleSheet } from "react-native";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Controller, useForm } from "react-hook-form";
 import Picker from "react-native-picker-select";
 import * as yup from 'yup';
@@ -9,6 +9,7 @@ import CustomTextInput from "./form-components/CustomTextInput";
 import FormButton from "./form-components/FormButton";
 import ConfirmAction from "./ConfirmAction";
 import { uploadWalk } from "../api";
+import { fetchWalks } from '../store/slices/walksSlice';
 import globalStyles from "../styles/globalStyles";
 
 const schema = yup.object().shape({
@@ -27,6 +28,7 @@ const UploadModal = ({
     setTotalAscent 
 }) => {
     const user = useSelector(state => state.auth.user);
+    const dispatch = useDispatch();
     const [difficulty, setDifficulty] = useState("");
     const [isUploading, setIsUploading] = useState(false);
     const [uploadError, setUploadError] = useState(null);
@@ -64,6 +66,7 @@ const UploadModal = ({
             setUserLocationHistory([]);
             setTotalDistance(0);
             setTotalAscent(0);
+            dispatch(fetchWalks());
         } catch (error) {
             console.log("Error uploading walk:", error);
             setUploadError("Unable to upload walk, please try again");
