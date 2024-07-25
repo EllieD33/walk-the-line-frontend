@@ -28,6 +28,7 @@ const ProfileScreen = ({ navigation }) => {
             ]}
         >
             <View style={styles.headerContainer} >
+                <View style={styles.placeholder} />
                 <Text style={globalStyles.h1} >Profile</Text>
                 <IconButton icon="logout" onPress={handleLogOut} />
             </View>
@@ -53,6 +54,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 20,
+    },
+    placeholder: {
+        width: 40,
     },
     walksContainer: {
         flex: 1,
