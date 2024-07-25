@@ -63,7 +63,7 @@ const WalkDetailsScreen = ({ navigation, route }) => {
                     <MetricView iconName='map-marker' value={`Start at:`}/>
                     <Text style={[globalStyles.textDark, {textAlign: 'center'}]}>{startAddress}</Text>
                 </View>
-                <View style={{marginTop: 8}} >
+                <View style={{marginTop: 8, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 3.84, elevation: 5 }} >
                     <NavButton text='Follow route' onPress={handleFollowPress} isOutline={false} />
                 </View>
             </View>
