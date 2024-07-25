@@ -1,12 +1,11 @@
-import { Text, StyleSheet } from "react-native";
-import {
-    SafeAreaView,
-    useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { Text, StyleSheet, View } from "react-native";
+import { SafeAreaView, useSafeAreaInsets, } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import IconButton from "../components/buttons/IconButton";
 import { logout } from "../store/slices/authSlice";
 import UserAvatar from "../components/UserImage";
+import globalStyles from "../styles/globalStyles";
+import ListView from "../components/ListView";
 
 const ProfileScreen = ({ navigation }) => {
     const insets = useSafeAreaInsets();
@@ -24,25 +23,42 @@ const ProfileScreen = ({ navigation }) => {
     return (
         <SafeAreaView
             style={[
-                styles.container,
+                styles.screen,
                 { paddingTop: insets.top, paddingBottom: insets.bottom },
             ]}
         >
-            <Text>PROFILE SCREEN</Text>
+            <View style={styles.headerContainer} >
+                <Text style={globalStyles.h1} >Profile</Text>
+                <IconButton icon="logout" onPress={handleLogOut} />
+            </View>
             <UserAvatar username={user.username} />
-            <IconButton icon="logout" onPress={handleLogOut} />
-            {user && <Text>Logged in as: {user.username}</Text>}
-            <Text>Your Walks</Text>
+            {user && <Text style={globalStyles.textDark} >Logged in as: {user.username}</Text>}
+            <View style={styles.walksContainer} >
+                <Text style={globalStyles.textDarkLarge} >Your Walks</Text>
+                <ListView userId={user.user_id} />
+            </View>
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    screen: {
         flex: 1,
         backgroundColor: "#D4EADF",
         alignItems: "center",
     },
+    headerContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+    },
+    walksContainer: {
+        flex: 1,
+        marginVertical: 20,
+        alignItems: 'center',
+    }
 });
 
 export default ProfileScreen;

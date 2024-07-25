@@ -14,8 +14,8 @@ const IconButton = ({ icon, onPress }) => {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: '#4AC483',
-        width: 50,
-        height: 50,
+        width: 40,
+        height: 40,
         alignItems: 'center',
         borderRadius: 10,
         justifyContent: 'center'
