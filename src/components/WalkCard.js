@@ -13,9 +13,9 @@ const WalkCard = ({ walk, navigation }) => {
             <Text style={globalStyles.textBoldDark} >{walk.title}</Text>
             <Text style={globalStyles.textDark} >{walk.description}</Text>
             <View style={styles.metricsContainer} >
-                <MetricView iconName='walk' value={`${walk.distance_km} km`} />
-                <MetricView iconName='slope-uphill' value={`${walk.ascent} m`} />
-                <MetricView iconName='speedometer' value={`${walk.difficulty}/10`}/>
+                <MetricView iconName='walk' value={`${walk.distance_km}km`} />
+                <MetricView iconName='slope-uphill' value={`${walk.ascent}m`} />
+                <MetricView iconName='speedometer' value={`${walk.difficulty}`}/>
             </View>
             <NavButton text='View walk' onPress={handleReadMorePress} isOutline={false} />
         </View>
