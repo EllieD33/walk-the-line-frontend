@@ -6,6 +6,8 @@ import MapWithPolyLines from "../components/MapWithPolyLines";
 import globalStyles from "../styles/globalStyles";
 import MetricView from "../components/MetricView";
 import NavButton from "../components/buttons/NavButton";
+import { capitaliseFirstLetter } from "../utils/helpers"
+
 
 const WalkDetailsScreen = ({ navigation, route }) => {
     const [startAddress, setStartAddress] = useState(null);
@@ -55,7 +57,7 @@ const WalkDetailsScreen = ({ navigation, route }) => {
                     <MetricView iconName='slope-uphill' value={`Total Ascent: ${walk.ascent} m`} />
                 </View>
                 <View style={styles.center} >
-                    <MetricView iconName='speedometer' value={`Difficulty: ${walk.difficulty}/10`}/>
+                    <MetricView iconName='speedometer' value={`Difficulty: ${capitaliseFirstLetter(walk.difficulty)}`}/>
                 </View>
                 <View style={styles.center} >
                     <MetricView iconName='map-marker' value={`Start at:`}/>

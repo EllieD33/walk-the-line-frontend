@@ -2,6 +2,7 @@ import { View, StyleSheet, Text } from "react-native";
 import MetricView from "./MetricView";
 import NavButton from "./buttons/NavButton"
 import globalStyles from "../styles/globalStyles";
+import { capitaliseFirstLetter } from "../utils/helpers"
 
 const WalkCard = ({ walk, navigation }) => {
     const handleReadMorePress = () => {
@@ -15,7 +16,7 @@ const WalkCard = ({ walk, navigation }) => {
             <View style={styles.metricsContainer} >
                 <MetricView iconName='walk' value={`${walk.distance_km}km`} />
                 <MetricView iconName='slope-uphill' value={`${walk.ascent}m`} />
-                <MetricView iconName='speedometer' value={`${walk.difficulty}`}/>
+                <MetricView iconName='speedometer' value={`${capitaliseFirstLetter(walk.difficulty)}`}/>
             </View>
             <NavButton text='View walk' onPress={handleReadMorePress} isOutline={false} />
         </View>
