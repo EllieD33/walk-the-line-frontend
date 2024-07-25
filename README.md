@@ -5,6 +5,8 @@ WalkingWays is a React Native application built using Expo, designed to enhance 
 
 Originally developed as part of a group final project at Northcoders, this frontend has been overhauled to improve navigation and styling.
 
+It may take a while for the API to connect initially - please be patient :)
+
 ## Features
  - **Live Route Recording:** Use location services to record your walk or
    hike in real-time.
