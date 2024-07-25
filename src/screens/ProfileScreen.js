@@ -35,7 +35,7 @@ const ProfileScreen = ({ navigation }) => {
             {user && <Text style={globalStyles.textDark} >Logged in as: {user.username}</Text>}
             <View style={styles.walksContainer} >
                 <Text style={globalStyles.textDarkLarge} >Your Walks</Text>
-                <ListView userId={user.user_id} />
+                <ListView navigation={navigation} userId={user.user_id} />
             </View>
         </SafeAreaView>
     );
