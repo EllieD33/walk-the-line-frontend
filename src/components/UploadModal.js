@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Modal, View, Alert, Text, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Modal, View, Text, StyleSheet } from "react-native";
 import { useSelector } from 'react-redux';
 import { Controller, useForm } from "react-hook-form";
 import Picker from "react-native-picker-select";
@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import CustomTextInput from "./form-components/CustomTextInput";
 import FormButton from "./form-components/FormButton";
+import ConfirmAction from "./ConfirmAction";
 import { uploadWalk } from "../api";
 import globalStyles from "../styles/globalStyles";
 
@@ -30,6 +31,7 @@ const UploadModal = ({
     const [isUploading, setIsUploading] = useState(false);
     const [uploadError, setUploadError] = useState(null);
     const [uploadedWalk, setUploadedWalk] = useState(null);
+    const [confirmDiscard, setConfirmDiscard] = useState(false);
     const { control, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
@@ -62,7 +64,6 @@ const UploadModal = ({
             setUserLocationHistory([]);
             setTotalDistance(0);
             setTotalAscent(0);
-            setModalVisible(false);
         } catch (error) {
             console.log("Error uploading walk:", error);
             setUploadError("Unable to upload walk, please try again");
@@ -71,21 +72,26 @@ const UploadModal = ({
         }        
     };
 
-    const onDiscard = () => {
+    const handleDiscardPress = () => {
+        setConfirmDiscard(true);
+    };
+
+    const handleDiscardConfirm = () => {
         reset();
         setUserLocationHistory([]);
         setTotalDistance(0);
         setTotalAscent(0);
         setModalVisible(false);
         setUploadError(null);
-    };
+    }
+
+    const confirmDiscardText = "Are you sure you want to discard this walk? The walk data will be deleted."
 
     return (
         <Modal
             animationType="slide"
             visible={modalVisible}
             onRequestClose={() => {
-                Alert.alert('Upload cancelled.');
                 setModalVisible(!modalVisible);
             }}
             transparent={true}
@@ -93,19 +99,30 @@ const UploadModal = ({
             <View style={styles.modal}>
                 {uploadedWalk ? (
                     <View style={styles.successContainer}>
-                        <Text style={styles.headline}>Success!</Text>
-                        <Text style={styles.centeredText}>
+                        <Text style={globalStyles.h1}>Success!</Text>
+                        <Text style={[globalStyles.textDark, styles.centeredText]}>
                             Your walk "{uploadedWalk.title}" has been uploaded.
                         </Text>
                         <FormButton
                             text="Close"
                             onPress={() => setModalVisible(false)}
                             accessibilityLabel="Close"
-                            style={styles.button}
                         />
                     </View>
                 ) : (
-                    <>
+                    confirmDiscard ? (
+                        <View>
+                            <ConfirmAction 
+                                actionTitle="Discard walk"
+                                actionText={confirmDiscardText} 
+                                confirmPress={handleDiscardConfirm}
+                                cancelPress={() => setConfirmDiscard(false)}
+                                confirmButtonText="Discard"
+                                cancelButtonText="Cancel"
+                            />
+                        </View>
+                    ) : (
+                        <>
                         <View >
                             <Text style={[globalStyles.h1, styles.centeredText]}>
                                 Upload your walk
@@ -172,12 +189,13 @@ const UploadModal = ({
                             />
                             <FormButton 
                                 text="Discard"
-                                onPress={onDiscard}
+                                onPress={handleDiscardPress}
                                 accessibilityLabel="Discard walk"
                                 style={styles.button}
                             />
                         </View>
                     </>
+                    ) 
                 )}
             </View>
         </Modal>

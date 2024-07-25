@@ -63,7 +63,7 @@ const globalStyles = StyleSheet.create({
         backgroundColor: COLORS.primary,
     },
     buttonTextOutline: {
-        color: 'white',
+        color: '#232323',
     },
     buttonTextFilled: {
         color: '#232323', 
