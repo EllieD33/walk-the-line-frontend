@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     line: {
         height: 1,
         backgroundColor: 'white',
-        width: '90%',
+        width: '99%',
         alignSelf: 'center'
     },
     lineDark: {
