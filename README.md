@@ -18,7 +18,8 @@ Originally developed as part of a group final project at Northcoders, this front
 
  - **React Native:** Framework for building native apps using React. 
  - **Expo:** Toolchain for React Native apps. 
- - **JavaScript:** Core programming language. 
+ - **JavaScript:** Core programming language.
+ - **Axios:** To handle communication with the back-end. 
  - **Redux Toolkit:** State management library.
  - **React Hook Form:** Library for managing form state and validation.
  - **Yup:** Schema builder for value parsing and validation.
