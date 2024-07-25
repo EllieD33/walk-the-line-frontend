@@ -1,34 +1,45 @@
-import { Text, View, StyleSheet } from "react-native"
-import NavButton from "./buttons/NavButton"
+import { Text, View, StyleSheet } from "react-native";
+import CustomButton from "./buttons/CustomButton";
 import globalStyles from "../styles/globalStyles";
 
-const ConfirmAction = ({ actionTitle, actionText, confirmPress, cancelPress, confirmButtonText, cancelButtonText }) => {
+const ConfirmAction = ({
+    actionTitle,
+    actionText,
+    confirmPress,
+    cancelPress,
+    confirmButtonText,
+    cancelButtonText,
+}) => {
     return (
         <View>
-            <Text style={[globalStyles.h1, {textAlign: 'center'}]} >{actionTitle}</Text>
-            <Text style={[globalStyles.textDark, {textAlign: 'center'}]} >{actionText}</Text>
-            <View style={styles.buttonContainer} >
-                <NavButton
+            <Text style={[globalStyles.h1, { textAlign: "center" }]}>
+                {actionTitle}
+            </Text>
+            <Text style={[globalStyles.textDark, { textAlign: "center" }]}>
+                {actionText}
+            </Text>
+            <View style={styles.buttonContainer}>
+                <CustomButton
                     text={confirmButtonText}
                     onPress={confirmPress}
-                    isOutline={true}
+                    variant='outline'
                 />
-                <NavButton
+                <CustomButton
                     text={cancelButtonText}
                     onPress={cancelPress}
                     isOutline={false}
-                    color='primary'
+                    variant='filledLight'
                 />
             </View>
         </View>
-    )
+    );
 };
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center'
-    }
-})
+        flexDirection: "row",
+        justifyContent: "center",
+    },
+});
 
 export default ConfirmAction;

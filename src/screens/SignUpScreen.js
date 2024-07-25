@@ -4,7 +4,7 @@ import { useForm, Controller, useWatch } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import CustomTextInput from "../components/form-components/CustomTextInput";
-import FormButton from "../components/form-components/FormButton";
+import CustomButton from '../components/buttons/CustomButton';
 import AuthStackLayout from "../layouts/AuthStackLayout";
 import globalStyles from "../styles/globalStyles";
 import { signUp, getUsernames } from '../api'
@@ -174,16 +174,16 @@ const SignUpScreen = ({ navigation }) => {
                     <Text style={[globalStyles.errorText, styles.centredText]}>
                     {signUpFailed || apiError || ''}
                 </Text>
-                    <FormButton
-                        role={"submit"}
+                    <CustomButton
                         text="Sign up"
                         loading={loading}
                         loadingText="Signing up..."
                         onPress={handleSubmit(onSubmit)}
                         accessibilityLabel="Sign up button"
-                        accessibilityHint="Double tap to sign up" />
+                        variant='filledLight'
+                    />
                 </View>
-                <View style={styles.center} >
+                <View style={[styles.center, { marginTop: 8 }]} >
                     <Text style={[globalStyles.textWhite, styles.centredText]}>
                         Already have an account?{' '}
                     </Text>

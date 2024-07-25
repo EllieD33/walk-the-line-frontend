@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from 'react-redux'; 
 import * as SecureStore from 'expo-secure-store';
 import CustomTextInput from "../components/form-components/CustomTextInput";
-import FormButton from "../components/form-components/FormButton";
+import CustomButton from '../components/buttons/CustomButton';
 import AuthStackLayout from '../layouts/AuthStackLayout'; 
 import globalStyles from "../styles/globalStyles";
 import { logIn } from '../api';
@@ -99,17 +99,16 @@ function LoginScreen({ navigation }) {
                 <Text style={[globalStyles.errorText, styles.centredText]}>
                     {logInFailed || apiError || ''}
                 </Text>
-                <FormButton
-                    role={"submit"}
+                <CustomButton
                     text="Log in"
                     loading={loading}
                     loadingText="Logging in..."
                     onPress={handleSubmit(onSubmit)}
                     accessibilityLabel="Log in button"
-                    accessibilityHint="Double tap to log in"
+                    variant='filledLight'
                 />
             </View>
-            <View style={styles.center}>
+            <View style={[styles.center, {marginTop: 8}]}>
                 <Text style={[globalStyles.textWhite, styles.centredText]}>Don't have an account?</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text style={[globalStyles.textBoldDark, styles.link]}>Sign up</Text>

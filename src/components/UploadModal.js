@@ -5,8 +5,8 @@ import { Controller, useForm } from "react-hook-form";
 import Picker from "react-native-picker-select";
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
+import CustomButton from "./buttons/CustomButton";
 import CustomTextInput from "./form-components/CustomTextInput";
-import FormButton from "./form-components/FormButton";
 import ConfirmAction from "./ConfirmAction";
 import { uploadWalk } from "../api";
 import { fetchWalks } from '../store/slices/walksSlice';
@@ -106,10 +106,11 @@ const UploadModal = ({
                         <Text style={[globalStyles.textDark, styles.centeredText]}>
                             Your walk "{uploadedWalk.title}" has been uploaded.
                         </Text>
-                        <FormButton
+                        <CustomButton
                             text="Close"
                             onPress={() => setModalVisible(false)}
                             accessibilityLabel="Close"
+                            variant='filledLight'
                         />
                     </View>
                 ) : (
@@ -183,18 +184,19 @@ const UploadModal = ({
                             <Text style={globalStyles.errorText}>{uploadError}</Text>
                         )}
                         <View style={styles.buttonContainer}>
-                            <FormButton 
+                            <CustomButton 
                                 text="Upload"
                                 loading={isUploading}
                                 loadingText="Uploading..."
                                 onPress={handleSubmit(onSubmit)}
                                 accessibilityLabel="Upload walk"
-                                color='primary'
+                                variant='filledPrimary'
                             />
-                            <FormButton 
+                            <CustomButton 
                                 text="Discard"
                                 onPress={handleDiscardPress}
                                 accessibilityLabel="Discard walk"
+                                variant='filledLight'
                             />
                         </View>
                     </>

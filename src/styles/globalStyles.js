@@ -48,25 +48,37 @@ const globalStyles = StyleSheet.create({
         paddingHorizontal: 20,
         borderStyle: 'solid',
         borderWidth: 1,
-        borderColor: COLORS.light,
         marginTop: 10,
         marginHorizontal: 10,
         minWidth: 120,
     },
-    buttonOutline: {
+    buttonOutlineLight: {
+        borderColor: COLORS.light,
         backgroundColor: 'transparent',
     },
-    buttonFilled: {
+    buttonOutlineDark: {
+        borderColor: COLORS.dark,
+        backgroundColor: 'transparent',
+    },
+    buttonOutlineTextDark: {
+        color: COLORS.dark,
+    },
+    buttonOutlineTextWhite: {
+        color: '#fff',
+    },
+    buttonFilledLight: {
         backgroundColor: COLORS.light,
+        borderColor: COLORS.light,
+    },
+    buttonFilledLightText: {
+        color: COLORS.dark,
     },
     buttonFilledPrimary: {
         backgroundColor: COLORS.primary,
+        borderColor: COLORS.light,
     },
-    buttonTextOutline: {
-        color: '#232323',
-    },
-    buttonTextFilled: {
-        color: '#232323', 
+    buttonFilledPrimaryText: {
+        color: '#fff',
     },
 });
 

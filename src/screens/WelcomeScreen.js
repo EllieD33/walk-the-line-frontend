@@ -1,6 +1,6 @@
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import AppName from "../components/AppName";
-import NavButton from "../components/buttons/NavButton";
+import CustomButton from "../components/buttons/CustomButton";
 
 const WelcomeScreen = ({ navigation }) => {
     const handleLoginPress = () => {
@@ -16,15 +16,16 @@ const WelcomeScreen = ({ navigation }) => {
             <View style={styles.container}>
                 <AppName />
                 <View style={styles.buttonContainer}>
-                    <NavButton
+                    <CustomButton
                         text="Log in"
                         onPress={handleLoginPress}
-                        isOutline={true}
+                        variant="outline"
+                        textColor="white"
                     />
-                    <NavButton
+                    <CustomButton
                         text="Sign up"
                         onPress={handleSignupPress}
-                        isOutline={false}
+                        variant="filledLight"
                     />
                 </View>
             </View>
