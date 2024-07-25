@@ -181,8 +181,9 @@ const UploadModal = ({
                         )}
                         <View style={styles.buttonContainer}>
                             <FormButton 
-                                text={isUploading ? "Uploading..." : "Upload"}
+                                text="Upload"
                                 loading={isUploading}
+                                loadingText="Uploading..."
                                 onPress={handleSubmit(onSubmit)}
                                 accessibilityLabel="Upload walk"
                                 style={styles.button}
