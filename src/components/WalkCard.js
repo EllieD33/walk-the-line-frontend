@@ -25,6 +25,7 @@ const WalkCard = ({ walk, navigation }) => {
                 text="View walk"
                 onPress={handleReadMorePress}
                 variant="filledLight"
+                accessibilityLabel="View walk details"
             />
         </View>
     );
