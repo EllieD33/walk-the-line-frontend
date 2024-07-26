@@ -8,7 +8,7 @@ const DeleteButton = ({ walkId, setConfirmDelete, }) => {
 
     return (
         <View>
-            <IconButton variant='delete' icon='delete-outline' onPress={handleDeletePress} />
+            <IconButton variant='delete' icon='delete-outline' onPress={handleDeletePress} accessibilityLabel="Delete walk" />
         </View>
     )
 }

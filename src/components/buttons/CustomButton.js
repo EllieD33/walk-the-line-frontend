@@ -45,7 +45,7 @@ CustomButton.propTypes = {
     loading: PropTypes.bool,
     loadingText: PropTypes.string,
     onPress: PropTypes.func.isRequired,
-    accessibilityLabel: PropTypes.string.isRequired,
+    accessibilityLabel: PropTypes.string,
     accessibilityHint: PropTypes.string,
     variant: PropTypes.oneOf(['outline', 'filledLight', 'filledPrimary']).isRequired,
     textColor: PropTypes.oneOf(['dark', 'white']),

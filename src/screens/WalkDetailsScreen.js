@@ -91,14 +91,15 @@ const WalkDetailsScreen = ({ navigation, route }) => {
                             value={`Total Ascent: ${walk.ascent} m`}
                         />
                     </View>
-                    <View style={styles.center}>
+                    {walk.difficulty &&
+                        <View style={styles.center}>
                         <MetricView
                             iconName="speedometer"
                             value={`Difficulty: ${capitaliseFirstLetter(
                                 walk.difficulty
                             )}`}
                         />
-                    </View>
+                    </View>}
                     <View style={styles.center}>
                         <MetricView iconName="map-marker" value={`Start at:`} />
                         <Text

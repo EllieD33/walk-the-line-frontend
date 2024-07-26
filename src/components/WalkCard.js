@@ -16,10 +16,8 @@ const WalkCard = ({ walk, navigation }) => {
             <View style={styles.metricsContainer}>
                 <MetricView iconName="walk" value={`${walk.distance_km}km`} />
                 <MetricView iconName="slope-uphill" value={`${walk.ascent}m`} />
-                <MetricView
-                    iconName="speedometer"
-                    value={`${capitaliseFirstLetter(walk.difficulty)}`}
-                />
+                {walk.difficulty && <MetricView iconName="speedometer" value={`${capitaliseFirstLetter(walk.difficulty)}`}
+                />}
             </View>
             <CustomButton
                 text="View walk"
