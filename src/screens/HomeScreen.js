@@ -30,7 +30,7 @@ const HomeScreen = ({ navigation }) => {
                 selectedIndex={selectedView}
                 onSelect={setSelectedView}
             />
-            {selectedView === 0 ? <FullMapView /> : <ListView navigation={navigation} />}
+            {selectedView === 0 ? <FullMapView navigation={navigation} /> : <ListView navigation={navigation} />}
         </SafeAreaView>
     );
 };

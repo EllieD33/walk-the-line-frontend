@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
-import { View, ActivityIndicator, Text, StyleSheet } from "react-native";
+import { View, ActivityIndicator, Text, StyleSheet, TouchableOpacity } from "react-native";
 import * as Location from 'expo-location';
 import MapView, { Callout, Marker, UrlTile } from "react-native-maps";
 import { selectAllWalks  } from "../store/slices/walksSlice";
+import CustomButton from "./buttons/CustomButton";
+import globalStyles from "../styles/globalStyles";
 
-const FullMapView = () => {
+const FullMapView = ({ navigation }) => {
     const walks = useSelector(selectAllWalks);    
     const [region, setRegion] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -68,11 +70,12 @@ const FullMapView = () => {
                             title={walk.title}
                             description={walk.description}
                         >
-                            <Callout>
+                            <Callout onPress={() => navigation.navigate('WalkDetails', { walk })} >
                                 <View style={styles.calloutContainer}>
-                                    <Text style={styles.calloutTitle}>{walk.title}</Text>
-                                    <Text style={styles.calloutDescription}>{walk.description}</Text>
+                                    <Text style={[globalStyles.textBoldDark, styles.centerText]}>{walk.title}</Text>
+                                    <Text style={[globalStyles.textDark, styles.centerText]}>{walk.description}</Text>
                                 </View>
+                                <Text style={[globalStyles.labelDark, styles.centerText, { marginBottom: 8 }]}>Tap to view walk</Text>
                             </Callout>
                         </Marker>
                     ))}
@@ -101,16 +104,9 @@ const styles = StyleSheet.create({
         width: 200,
         padding: 10,
         backgroundColor: "white",
+        overflow: 'hidden',
     },
-    calloutTitle: {
-        fontSize: 16,
-        marginBottom: 5,
-        textAlign: "center",
-    },
-    calloutDescription: {
-        fontSize: 14,
-        marginBottom: 5,
-        color: "#888",
-        textAlign: "center",
-    },
+    centerText: {
+        textAlign: 'center'
+    }
 });
