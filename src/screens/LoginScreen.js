@@ -104,7 +104,6 @@ function LoginScreen({ navigation }) {
                     loading={loading}
                     loadingText="Logging in..."
                     onPress={handleSubmit(onSubmit)}
-                    accessibilityLabel="Log in button"
                     variant='filledLight'
                 />
             </View>

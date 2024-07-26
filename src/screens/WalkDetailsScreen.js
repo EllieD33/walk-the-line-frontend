@@ -122,7 +122,6 @@ const WalkDetailsScreen = ({ navigation, route }) => {
                             text="Follow route"
                             onPress={handleFollowPress}
                             variant="filledLight"
-                            accessibilityLabel="Follow the walking route"
                         />
                     </View>
                 {user.user_id === walk.creator_id && (

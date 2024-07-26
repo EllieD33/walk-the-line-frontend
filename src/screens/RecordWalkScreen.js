@@ -167,7 +167,6 @@ const RecordWalkScreen = () => {
                     onPress={isTracking ? handleStop : handleStart}
                     variant="filledPrimary"
                     buttonWidth={200}
-                    accessibilityLabel={isTracking ? "Stop Tracking" : "Start Tracking"}
                 />
             </View>
             {modalVisible && (

@@ -109,7 +109,6 @@ const UploadModal = ({
                         <CustomButton
                             text="Close"
                             onPress={() => setModalVisible(false)}
-                            accessibilityLabel="Close"
                             variant='filledLight'
                         />
                     </View>
@@ -189,13 +188,11 @@ const UploadModal = ({
                                 loading={isUploading}
                                 loadingText="Uploading..."
                                 onPress={handleSubmit(onSubmit)}
-                                accessibilityLabel="Upload walk"
                                 variant='filledPrimary'
                             />
                             <CustomButton 
                                 text="Discard"
                                 onPress={handleDiscardPress}
-                                accessibilityLabel="Discard walk"
                                 variant='filledLight'
                             />
                         </View>

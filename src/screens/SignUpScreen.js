@@ -179,7 +179,6 @@ const SignUpScreen = ({ navigation }) => {
                         loading={loading}
                         loadingText="Signing up..."
                         onPress={handleSubmit(onSubmit)}
-                        accessibilityLabel="Sign up button"
                         variant='filledLight'
                     />
                 </View>

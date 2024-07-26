@@ -27,7 +27,6 @@ const ConfirmAction = ({
                 <CustomButton
                     text={cancelButtonText}
                     onPress={cancelPress}
-                    isOutline={false}
                     variant='filledLight'
                 />
             </View>
