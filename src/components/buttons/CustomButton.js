@@ -5,15 +5,15 @@ import globalStyles from "../../styles/globalStyles";
 
 const CustomButton = ({ 
     text, 
-    loading, 
-    loadingText, 
+    loading = false, 
+    loadingText = 'Loading...', 
     onPress, 
     accessibilityLabel, 
     accessibilityHint, 
-    variant, 
-    textColor, 
-    borderColor, 
-    buttonWidth 
+    variant = 'filledPrimary', 
+    textColor = 'dark', 
+    borderColor = 'light', 
+    buttonWidth = 'auto'  
 }) => {
     const buttonStyle = [
         globalStyles.button,
@@ -51,14 +51,6 @@ CustomButton.propTypes = {
     textColor: PropTypes.oneOf(['dark', 'white']),
     borderColor: PropTypes.oneOf(['light', 'dark']),
     buttonWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
-
-CustomButton.defaultProps = {
-    loading: false,
-    loadingText: 'Loading...',
-    textColor: 'dark',
-    borderColor: 'light',
-    buttonWidth: 'auto',
 };
 
 const styles = StyleSheet.create({
