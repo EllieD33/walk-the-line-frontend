@@ -21,3 +21,12 @@ export const uploadWalk = async (walkToUpload) => {
         console.log(error);
     }
 };
+
+export const deleteWalk = async (walkId) => {
+    try {
+        await walksApi.delete(`/${walkId}`);
+        return
+    } catch (error) {
+        console.log(error);
+    }
+};
