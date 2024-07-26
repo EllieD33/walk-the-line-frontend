@@ -20,7 +20,8 @@ It may take a while for the API to connect initially - please be patient :)
 
  - **React Native:** Framework for building native apps using React. 
  - **Expo:** Toolchain for React Native apps. 
- - **JavaScript:** Core programming language. 
+ - **JavaScript:** Core programming language.
+ - **Axios:** To handle communication with the back-end. 
  - **Redux Toolkit:** State management library.
  - **React Hook Form:** Library for managing form state and validation.
  - **Yup:** Schema builder for value parsing and validation.
