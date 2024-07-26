@@ -33,7 +33,7 @@ const CustomButton = ({
 
     return (
         <View>
-            <Pressable onPress={onPress} style={buttonStyle} accessibilityLabel={accessibilityLabel} accessibilityHint={accessibilityHint}>
+            <Pressable onPress={onPress} style={buttonStyle} accessibilityLabel={accessibilityLabel} accessibilityHint={accessibilityHint} disabled={loading} >
                 <Text style={[globalStyles.textDark, textStyle]}>{loading ? loadingText : text}</Text>
             </Pressable>
         </View>
