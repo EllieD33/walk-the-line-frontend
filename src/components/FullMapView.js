@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
-import { View, ActivityIndicator, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, ActivityIndicator, Text, StyleSheet } from "react-native";
 import * as Location from 'expo-location';
 import MapView, { Callout, Marker, UrlTile } from "react-native-maps";
 import { selectAllWalks  } from "../store/slices/walksSlice";
-import CustomButton from "./buttons/CustomButton";
 import globalStyles from "../styles/globalStyles";
+import PropTypes from "prop-types";
 
 const FullMapView = ({ navigation }) => {
     const walks = useSelector(selectAllWalks);    
@@ -85,7 +85,9 @@ const FullMapView = ({ navigation }) => {
     );
 };
 
-export default FullMapView;
+FullMapView.propTypes = {
+    navigation: PropTypes.object.isRequired,
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -110,3 +112,5 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     }
 });
+
+export default FullMapView;

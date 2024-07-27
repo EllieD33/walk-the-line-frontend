@@ -1,4 +1,5 @@
 import { Text, View, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
 import CustomButton from "./buttons/CustomButton";
 import globalStyles from "../styles/globalStyles";
 
@@ -40,5 +41,14 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
 });
+
+ConfirmAction.propTypes = {
+    actionTitle: PropTypes.string.isRequired,
+    actionText: PropTypes.string.isRequired,
+    confirmPress: PropTypes.func.isRequired,
+    cancelPress: PropTypes.func.isRequired,
+    confirmButtonText: PropTypes.string.isRequired,
+    cancelButtonText: PropTypes.string.isRequired
+}
 
 export default ConfirmAction;

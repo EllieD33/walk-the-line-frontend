@@ -3,6 +3,7 @@ import MetricView from "./MetricView";
 import CustomButton from "./buttons/CustomButton";
 import globalStyles from "../styles/globalStyles";
 import { capitaliseFirstLetter } from "../utils/helpers";
+import PropTypes from "prop-types";
 
 const WalkCard = ({ walk, navigation }) => {
     const handleReadMorePress = () => {
@@ -42,5 +43,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
 });
+
+WalkCard.propTypes = {
+    navigation: PropTypes.object.isRequired,
+    walk: PropTypes.object.isRequired
+}
 
 export default WalkCard;

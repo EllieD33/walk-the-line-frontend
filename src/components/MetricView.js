@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import globalStyles from "../styles/globalStyles";
+import PropTypes from "prop-types";
 
 const MetricView = ({ iconName, value }) => {
     const [identifier, ...rest] = value.split(':');
@@ -31,5 +32,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 4
     },
 });
+
+MetricView.propTypes = {
+    iconName: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
+}
 
 export default MetricView;

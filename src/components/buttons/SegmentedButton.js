@@ -1,5 +1,6 @@
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import globalStyles from "../../styles/globalStyles";
+import PropTypes from "prop-types";
 
 const SegmentedButton = ({ options, selectedIndex, onSelect}) => {
     return (
@@ -29,6 +30,12 @@ const SegmentedButton = ({ options, selectedIndex, onSelect}) => {
         </View>
     );
 };
+
+SegmentedButton.propTypes = {
+    options: PropTypes.arrayOf(PropTypes.string).isRequired,
+    selectedIndex: PropTypes.number.isRequired,
+    onSelect: PropTypes.func.isRequired
+}
 
 const styles = StyleSheet.create({
     container: {

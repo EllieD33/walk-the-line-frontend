@@ -1,7 +1,8 @@
 import { View, Pressable, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import PropTypes from "prop-types";
 
-const IconButton = ({ icon, onPress, disabled, variant, accessibilityLabel }) => {
+const IconButton = ({ icon, onPress, disabled, variant = 'filledPrimary', accessibilityLabel }) => {
     const buttonColor = {
         backgroundColor: variant === 'delete' ? '#D70040' : '#4AC483',
     }
@@ -15,6 +16,14 @@ const IconButton = ({ icon, onPress, disabled, variant, accessibilityLabel }) =>
     )
 };
 
+IconButton.PropTypes = {
+    icon: PropTypes.string.isRequired,
+    onPress: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
+    variant: PropTypes.string.oneOf(['outline', 'filledLight', 'filledPrimary']).isRequired,
+    accessibilityLabel: PropTypes.string,
+}
+
 const styles = StyleSheet.create({
     button: {
         width: 40,
@@ -23,6 +32,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'center'
     },
-})
+});
 
 export default IconButton;

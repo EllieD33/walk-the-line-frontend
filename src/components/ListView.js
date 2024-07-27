@@ -2,6 +2,8 @@ import { FlatList, View, StyleSheet, ActivityIndicator } from "react-native"
 import { useSelector } from 'react-redux';
 import { selectAllWalks } from "../store/slices/walksSlice";
 import WalkCard from "./WalkCard";
+import PropTypes from "prop-types";
+
 
 const ListView = ({ navigation, userId }) => {
     const walks = useSelector(selectAllWalks);
@@ -32,4 +34,10 @@ const styles = StyleSheet.create({
         padding: 10,
     },
 });
+
+ListView.propTypes = {
+    navigation: PropTypes.object.isRequired,
+    userId: PropTypes.number
+};
+
 export default ListView;
