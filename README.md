@@ -5,6 +5,8 @@ WalkingWays is a React Native application built using Expo, designed to enhance 
 
 Originally developed as part of a group final project at Northcoders, this frontend has been overhauled to improve navigation and styling.
 
+**Don't forget to visit the [backend repo](https://github.com/EllieD33/walk-the-line-backend) as well!**
+
 It may take a while for the API to connect initially - please be patient :)
 
 ## Features
