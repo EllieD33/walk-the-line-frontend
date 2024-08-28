@@ -1,7 +1,7 @@
-# WalkingWays - Frontend
+# WanderWays - Frontend
 ## Overview 
 
-WalkingWays is a React Native application built using Expo, designed to enhance your walking and hiking experiences. With WalkingWays, users can record their walks or hikes live using location services, upload their routes to share with others, and explore existing routes uploaded by the community.
+WanderWays is a React Native application built using Expo, designed to enhance your walking and hiking experiences. With WalkingWays, users can record their walks or hikes live using location services, upload their routes to share with others, and explore existing routes uploaded by the community.
 
 Originally developed as part of a group final project at Northcoders, this frontend has been overhauled to improve navigation and styling.
 
